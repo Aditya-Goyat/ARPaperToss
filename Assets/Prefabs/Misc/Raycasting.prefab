@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &154272294303023584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154272294303023586}
+  - component: {fileID: 154272294303023587}
+  m_Layer: 0
+  m_Name: Raycasting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154272294303023586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154272294303023584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.113152035, y: 0.34050497, z: 0.7389358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &154272294303023587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154272294303023584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc5b5fd1b18cca4d87ccf370b767b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placedDustbinPrefabs:
+  - {fileID: 2765044001572118110, guid: 21987e7d2d4ef1847a0cd0be073e846a, type: 3}
+  - {fileID: 2103703919561595216, guid: b2fd60c1adcd7534a83d2eacd38edacc, type: 3}
+  - {fileID: 7531515550850478668, guid: adc7a63ace0825740b8d1a985ec201bb, type: 3}
+  placingDustbinPrefabs:
+  - {fileID: 2765044001572118110, guid: 5cc8f36199116354185f9698603c1771, type: 3}
+  - {fileID: 2103703919561595216, guid: b2fd60c1adcd7534a83d2eacd38edacc, type: 3}
+  - {fileID: 7531515550850478668, guid: adc7a63ace0825740b8d1a985ec201bb, type: 3}
+  place: 1
+  arPlaneManager: {fileID: 0}
+  arSessionOrigin: {fileID: 0}
+  raycast: {fileID: 0}
+  minimumDistance: 2
+  cameraObj: {fileID: 0}
