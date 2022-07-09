@@ -55,7 +55,7 @@ public class Raycasting : MonoBehaviour
             if ((SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4) && (Vector3.Distance(cameraObj.transform.position, hitPose.position) < minimumDistance))
                 return;
             if (placingDustbin == null)
-                placingDustbin = Instantiate(placingDustbinPrefabs[ShopManager.Instance.dustbinIndex]);
+                placingDustbin = Instantiate(placingDustbinPrefabs[0]);
 
             arSessionOrigin.MakeContentAppearAt(placingDustbin.transform, (hitPose.position + new Vector3(0f, -0.1f, 0f)));
         }
@@ -99,7 +99,7 @@ public class Raycasting : MonoBehaviour
 
     private void DestroyActivePaperBall()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             if (cameraObj.transform.childCount >= 2)
             {
@@ -132,7 +132,7 @@ public class Raycasting : MonoBehaviour
                 Vector3 pos = placedDustbin.transform.position;
                 Quaternion rot = placedDustbin.transform.rotation;
                 Destroy(placedDustbin);
-                placingDustbin = Instantiate(placingDustbinPrefabs[ShopManager.Instance.dustbinIndex], pos, rot);
+                placingDustbin = Instantiate(placingDustbinPrefabs[0], pos, rot);
             }
         }
         else

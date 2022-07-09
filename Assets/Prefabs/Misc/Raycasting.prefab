@@ -46,12 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placedDustbinPrefabs:
   - {fileID: 2765044001572118110, guid: 21987e7d2d4ef1847a0cd0be073e846a, type: 3}
-  - {fileID: 2103703919561595216, guid: b2fd60c1adcd7534a83d2eacd38edacc, type: 3}
-  - {fileID: 7531515550850478668, guid: adc7a63ace0825740b8d1a985ec201bb, type: 3}
+  - {fileID: 3951118450379911292, guid: 4236abc085dbc9e4c85635628555ed2b, type: 3}
+  - {fileID: 8723879278190493165, guid: e7cbcb8a78a52374b8479410f6c18a02, type: 3}
+  - {fileID: 4618072976928561586, guid: 368da7bc8eb52474ca812bfb05966a34, type: 3}
+  - {fileID: 1184643143659369730, guid: 607dc2f3b964d8c4abd8581e82756d6d, type: 3}
+  - {fileID: 4188434642006731117, guid: b3e8bd9817dcfee4ab880dfe42a6bbf6, type: 3}
   placingDustbinPrefabs:
   - {fileID: 2765044001572118110, guid: 5cc8f36199116354185f9698603c1771, type: 3}
-  - {fileID: 2103703919561595216, guid: b2fd60c1adcd7534a83d2eacd38edacc, type: 3}
-  - {fileID: 7531515550850478668, guid: adc7a63ace0825740b8d1a985ec201bb, type: 3}
   place: 1
   arPlaneManager: {fileID: 0}
   arSessionOrigin: {fileID: 0}

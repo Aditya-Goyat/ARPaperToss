@@ -6,6 +6,7 @@ public class CoinsManager : MonoBehaviour
 {
     public static CoinsManager Instance;
     int coinsAmount = 0;
+    public int[] isUnlocked;
     public int Coins { get { return coinsAmount; } set { coinsAmount = value; } }
 
     private void Awake()
@@ -20,6 +21,10 @@ public class CoinsManager : MonoBehaviour
         if (PlayerPrefs.HasKey("coinsAmount"))
         {
             coinsAmount = PlayerPrefs.GetInt("coinsAmount");
+            for(int i = 0; i < 6; i++)
+            {
+                isUnlocked[i] = PlayerPrefs.GetInt("isUnlocked" + i);
+            }
         }
         else
         {
@@ -30,5 +35,9 @@ public class CoinsManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("coinsAmount", coinsAmount);
+        for(int i = 0; i < 6; i++)
+        {
+            PlayerPrefs.SetInt("isUnlocked" + i, isUnlocked[i]);
+        }
     }
 }

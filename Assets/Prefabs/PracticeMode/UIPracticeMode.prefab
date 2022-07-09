@@ -1578,7 +1578,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1047172653}
-  coinsText: {fileID: 0}
   settings: {fileID: 2273328503509782471}
   ySens: {fileID: 7389259903722700944}
   ySlider: {fileID: 7389259904744005572}

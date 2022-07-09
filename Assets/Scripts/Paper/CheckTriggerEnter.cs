@@ -20,7 +20,7 @@ public class CheckTriggerEnter : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
             {
-                CoinsManager.Instance.Coins += 5;
+                CoinsManager.Instance.Coins += 500000;
                 UIManagerChallengeMode.Instance.UpdateScore();
                 UIManagerChallengeMode.Instance.UpdateCoins();
                 Wind.Instance.ResetWind();
