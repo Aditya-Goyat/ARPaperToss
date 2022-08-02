@@ -4,6 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Raycasting : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Raycasting : MonoBehaviour
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public GameObject cameraObj;
     GameObject paperManager;
+    public GameObject placeButton;
 
     // Start is called before the first frame update
     void Awake()
@@ -46,14 +48,12 @@ public class Raycasting : MonoBehaviour
     private void Spawn()
     {
         Touch touch = Input.GetTouch(0);
-        if (touch.position.y > (Screen.height - 100))
+        if (touch.position.y < 250)
             return;
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         if (raycast.Raycast(ray, hits, TrackableType.PlaneWithinPolygon) && place)
         {
             var hitPose = hits[Mathf.FloorToInt((float)hits.Count / 2f)].pose;
-            if ((SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4) && (Vector3.Distance(cameraObj.transform.position, hitPose.position) < minimumDistance))
-                return;
             if (placingDustbin == null)
                 placingDustbin = Instantiate(placingDustbinPrefabs[0]);
 
@@ -72,6 +72,7 @@ public class Raycasting : MonoBehaviour
 
         if (!place)
         {
+            //placeButton.SetActive(false);
             PaperManager.Instance.ResetBall();
             if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
             {
@@ -80,10 +81,35 @@ public class Raycasting : MonoBehaviour
         }
         else
         {
+            //placeButton.SetActive(true);
             DestroyActivePaperBall();
         }
 
         DestroyThrownPaperBalls();
+    }
+
+    public void PlaceDustbin()
+    {
+        arPlaneManager.enabled = false;
+        DisableAllARPlanes();
+        ReplaceDustbins();
+
+        placeButton.SetActive(false);
+        PaperManager.Instance.ResetBall();
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            UIManagerChallengeMode.Instance.StartTimer();
+        }
+    }
+
+    public void RemoveDustbin()
+    {
+        arPlaneManager.enabled = true;
+        DestroyActivePaperBall();
+        EnableAllARPlanes();
+        ReplaceDustbins();
+
+        placeButton.SetActive(true);
     }
 
     private void DestroyThrownPaperBalls()
@@ -99,6 +125,8 @@ public class Raycasting : MonoBehaviour
 
     private void DestroyActivePaperBall()
     {
+        PaperManager.Instance.StopInvoke();
+
         if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             if (cameraObj.transform.childCount >= 2)
@@ -119,8 +147,6 @@ public class Raycasting : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-
-        PaperManager.Instance.StopInvoke();
     }
 
     private void ReplaceDustbins()
@@ -151,7 +177,15 @@ public class Raycasting : MonoBehaviour
     {
         foreach (ARPlane planes in arPlaneManager.trackables)
         {
-            planes.gameObject.SetActive(arPlaneManager.enabled);
+            planes.gameObject.SetActive(false);
+        }
+    }
+
+    private void EnableAllARPlanes()
+    {
+        foreach (ARPlane planes in arPlaneManager.trackables)
+        {
+            planes.gameObject.SetActive(true);
         }
     }
 }

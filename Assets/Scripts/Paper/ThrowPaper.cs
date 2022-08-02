@@ -32,8 +32,6 @@ public class ThrowPaper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Raycasting.instance.place)
-            return;
 
         if (holding)
         {

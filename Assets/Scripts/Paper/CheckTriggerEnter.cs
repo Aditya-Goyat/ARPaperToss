@@ -12,6 +12,7 @@ public class CheckTriggerEnter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target"))
         {
+            StreakController.ResetTimer();
             Destroy(this.gameObject, PaperManager.Instance.resetBallAfterSeconds);
             ScoreManager.Instance.Score++;
             if (SceneManager.GetActiveScene().buildIndex == 1)

@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +9,7 @@ public class DestroyPaper : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         StartCoroutine(DestroyObj(other));
-/*        if (SceneManager.GetActiveScene().buildIndex == 1)
+*//*        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             if(Camera.main.transform.childCount == 1)
                 isInCamera = true;
@@ -24,7 +24,7 @@ public class DestroyPaper : MonoBehaviour
         {
             PaperManager.Instance.StopInvoke();
             PaperManager.Instance.ResetBall();
-        }*/
+        }*//*
     }
 
     IEnumerator DestroyObj(Collider other)
@@ -51,3 +51,4 @@ public class DestroyPaper : MonoBehaviour
         Destroy(other.gameObject);
     }
 }
+*/

@@ -12,11 +12,14 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text coinsGainedText;
     [SerializeField] TMP_Text windText;
-    [SerializeField] GameObject settings;
     [SerializeField] GameObject timerUp;
+    [SerializeField] GameObject leftWind;
+    [SerializeField] GameObject rightWind;
+    [SerializeField] GameObject mainPanel;
     [SerializeField] TMP_InputField ySens;
     [SerializeField] Slider ySlider;
     [SerializeField] TMP_Text timerText;
+    [SerializeField] Animator panel;
     public float maxTimer = 120f;
     public float timerLeft;
     bool timerActive = false;
@@ -71,7 +74,17 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void UpdateWind(int windForce)
     {
-        windText.text = windForce.ToString();
+        windText.text = Mathf.Abs(windForce).ToString();
+        if(windForce < 0)
+        {
+            leftWind.SetActive(false);
+            rightWind.SetActive(true);
+        }
+        else
+        {
+            leftWind.SetActive(true);
+            rightWind.SetActive(false);
+        }
     }
 
     public void ExitScene()
@@ -88,19 +101,26 @@ public class UIManagerChallengeMode : MonoBehaviour
         finalScore.text = ScoreManager.Instance.Score.ToString();
     }
 
-    public void onButtonClick()
+    public void OnPlaceClick()
     {
-        Raycasting.instance.FreezeObject();
+        Raycasting.instance.PlaceDustbin();
+    }
+
+    public void OnRemoveClick()
+    {
+        Raycasting.instance.RemoveDustbin();
     }
 
     public void OnSettingsClick()
     {
-        settings.SetActive(true);
+        panel.SetBool("isClick", true);
+        //mainPanel.SetActive(false);
     }
 
     public void OnExitclick()
     {
-        settings.SetActive(false);
+        panel.SetBool("isClick", false);
+        //mainPanel.SetActive(true);
     }
 
     public void OnExitGame()
@@ -144,5 +164,10 @@ public class UIManagerChallengeMode : MonoBehaviour
             ySlider.value = n;
             ySens.text = n.ToString();
         }
+    }
+
+    public void playAnimationSettingClick()
+    {
+
     }
 }
