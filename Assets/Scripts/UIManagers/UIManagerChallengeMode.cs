@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class UIManagerChallengeMode : MonoBehaviour
 {
@@ -15,15 +17,17 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] GameObject timerUp;
     [SerializeField] GameObject leftWind;
     [SerializeField] GameObject rightWind;
-    [SerializeField] GameObject mainPanel;
+    [SerializeField] RectTransform mainPanel;
     [SerializeField] TMP_InputField ySens;
     [SerializeField] Slider ySlider;
-    [SerializeField] TMP_Text timerText;
+    [SerializeField] Slider timerSlider;
     [SerializeField] Animator panel;
+    [SerializeField] Image fillImage;
     public float maxTimer = 120f;
     public float timerLeft;
-    bool timerActive = false;
+    bool timerActive = true;
     int startCoins, endCoins;
+    float hue = 130;
 
     private void Awake()
     {
@@ -50,26 +54,23 @@ public class UIManagerChallengeMode : MonoBehaviour
                 TimerUp();
             }
 
+            hue += ((maxTimer - timerLeft) * 5.1f) + 130;
             timerLeft -= Time.deltaTime;
+            timerSlider.value = timerLeft;
+            fillImage.color = Color.HSVToRGB(hue, 100f, 100f);
 
             if (timerLeft <= 0f)
             {
                 timerLeft = 0f;
             }
-
-            UpdateTimerDisplay();
         }
     }
 
     public void StartTimer()
     {
         timerLeft = maxTimer;
+        timerSlider.value = timerLeft;
         timerActive = true;
-    }
-
-    private void UpdateTimerDisplay()
-    {
-        timerText.text = timerLeft < 0 ? timerLeft.ToString("F1") : Mathf.CeilToInt(timerLeft).ToString("F0");
     }
 
     public void UpdateWind(int windForce)
@@ -114,7 +115,6 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnSettingsClick()
     {
         panel.SetBool("isClick", true);
-        //mainPanel.SetActive(false);
     }
 
     public void OnExitclick()
@@ -164,10 +164,5 @@ public class UIManagerChallengeMode : MonoBehaviour
             ySlider.value = n;
             ySens.text = n.ToString();
         }
-    }
-
-    public void playAnimationSettingClick()
-    {
-
     }
 }

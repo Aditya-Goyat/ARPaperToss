@@ -8,6 +8,14 @@ public class UIManagerShop : MonoBehaviour
 {
     //[SerializeField] TMP_Text noFundsText;
     int[] price = new int[6] {0, 1000, 2000, 3000, 5000, 10000};
+    [SerializeField] TMP_Text coinsAmount;
+    [SerializeField] TMP_Text heartAmount;
+
+    public void Start()
+    {
+        UpdateCoinText();
+    }
+
     public void OnDustbinChoose(int index)
     {
         if(CoinsManager.Instance.isUnlocked[index] == 1)
@@ -23,12 +31,19 @@ public class UIManagerShop : MonoBehaviour
                 ShopManager.Instance.dustbinIndex = index;
                 CoinsManager.Instance.isUnlocked[index] = 1;
                 ShopManager.Instance.Save();
+                UpdateCoinText();
+                CoinsManager.Instance.Save();
             }
             else
             {
                 NotEnoughFunds();
             }
         }
+    }
+
+    public void UpdateCoinText()
+    {
+        coinsAmount.text = CoinsManager.Instance.Coins.ToString();
     }
 
     public void OnBackClick()

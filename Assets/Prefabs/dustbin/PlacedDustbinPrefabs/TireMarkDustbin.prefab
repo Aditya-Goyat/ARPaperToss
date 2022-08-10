@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2463750635931731154}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 18.3, y: 18.3, z: 16.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109,9 +109,7 @@ GameObject:
   - component: {fileID: 8723879276686753824}
   - component: {fileID: 8723879276686753839}
   - component: {fileID: 8723879276686753836}
-  - component: {fileID: 8723879276686753837}
   - component: {fileID: 8723879276686753826}
-  - component: {fileID: 8723879276686753827}
   m_Layer: 6
   m_Name: Floor (1)
   m_TagString: Untagged
@@ -184,19 +182,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8723879276686753837
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8723879276686753825}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &8723879276686753826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -210,18 +195,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8723879276686753827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8723879276686753825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7457e3c6de0bbd245a3f21d7d65045ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8723879277335997158
 GameObject:
   m_ObjectHideFlags: 0

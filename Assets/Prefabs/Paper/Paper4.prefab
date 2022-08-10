@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3768350176948572250}
   - component: {fileID: 5442979044722318061}
   - component: {fileID: 739962032708259998}
-  - component: {fileID: 6599707322031563194}
   - component: {fileID: 1992966453153553765}
   m_Layer: 0
   m_Name: Paper4
@@ -132,9 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flickSpeed: 0.4
   ballStartZ: 0.7
-  sensivity: {x: 5, y: 60}
   speed: 2
-  resetBallAfterSeconds: 2
 --- !u!114 &739962032708259998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,25 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48cb18e3d622bf4e820ff9579bf658f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyWind: 0
-  windForce: 0
   maxWind: 5
---- !u!114 &6599707322031563194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131631387081516491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1608c27247617b24e82c65b50a00e8e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arPlaneManager: {fileID: 0}
-  toSpawn: {fileID: 9096258665820190642, guid: b37390f72f3d1534e9187a3412ee7bf2, type: 3}
-  obj: {fileID: 0}
-  test: {fileID: 0}
 --- !u!114 &1992966453153553765
 MonoBehaviour:
   m_ObjectHideFlags: 0

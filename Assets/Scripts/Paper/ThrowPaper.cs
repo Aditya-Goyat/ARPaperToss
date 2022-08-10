@@ -127,6 +127,7 @@ public class ThrowPaper : MonoBehaviour
     public void DestroyComponents()
     {
         Destroy(gameObject.GetComponent<Rigidbody>());
+        Destroy(gameObject.GetComponent<SphereCollider>());
         Destroy(gameObject.GetComponent<ThrowPaper>());
     }
 
