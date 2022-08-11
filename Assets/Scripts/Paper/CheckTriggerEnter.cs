@@ -21,7 +21,10 @@ public class CheckTriggerEnter : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6 || SceneManager.GetActiveScene().buildIndex == 5)
             {
-                CoinsManager.Instance.Coins += 500000;
+                if(Vector3.Distance(Camera.main.transform.position, transform.position) >= 3f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 5f)
+                    CoinsManager.Instance.Coins += 10000;
+                else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 5f)
+                    CoinsManager.Instance.Coins += 20000;
                 UIManagerChallengeMode.Instance.UpdateScore();
                 UIManagerChallengeMode.Instance.UpdateCoins();
                 if(SceneManager.GetActiveScene().buildIndex == 2)
