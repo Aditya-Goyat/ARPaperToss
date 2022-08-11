@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2772610228413819888}
   - component: {fileID: 1285093545374868565}
   - component: {fileID: 3905015106494763167}
-  - component: {fileID: 3701096786384239802}
+  - component: {fileID: 6782203678235356578}
   m_Layer: 0
   m_Name: dustbin4.1
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3701096786384239802
+--- !u!64 &6782203678235356578
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 2631206ad45fc6548ac2f828606e6eeb, type: 3}
+  m_Mesh: {fileID: 2534964839176971238, guid: d356586273f5a904ca83d94fbc3c5333, type: 3}
 --- !u!1 &3951118449687366761
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3951118450254282037}
   - component: {fileID: 3951118450254282038}
+  - component: {fileID: 4016073698905136871}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -240,6 +241,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4016073698905136871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951118450254282036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103f3964ada00e646b0b3d314511562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3951118450379911292
 GameObject:
   m_ObjectHideFlags: 0

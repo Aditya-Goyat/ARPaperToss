@@ -59,3 +59,4 @@ MonoBehaviour:
   raycast: {fileID: 0}
   minimumDistance: 2
   cameraObj: {fileID: 0}
+  placeButton: {fileID: 0}

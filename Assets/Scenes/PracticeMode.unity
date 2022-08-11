@@ -241,6 +241,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1202750172831636854, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202750172831636854, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216920352244029284, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216920352244029284, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216920352244029284, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777513039538239773, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777513039538239773, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777513039538239773, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777513041265037823, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777513041265037823, guid: 601c8bda87b609c47af72fa502149843,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9001106254329980246, guid: 601c8bda87b609c47af72fa502149843,
         type: 3}
       propertyPath: m_Pivot.x
@@ -353,6 +403,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 601c8bda87b609c47af72fa502149843, type: 3}
+--- !u!1 &2073445035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609446381, guid: 601c8bda87b609c47af72fa502149843,
+    type: 3}
+  m_PrefabInstance: {fileID: 2073445034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &154272293963332497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,6 +486,11 @@ PrefabInstance:
       propertyPath: cameraObj
       value: 
       objectReference: {fileID: 1354141925}
+    - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
+        type: 3}
+      propertyPath: placeButton
+      value: 
+      objectReference: {fileID: 2073445035}
     - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
         type: 3}
       propertyPath: arPlaneManager

@@ -2,14 +2,19 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManagerLivesMode : MonoBehaviour
 {
     public static UIManagerLivesMode Instance;
     [SerializeField] TMP_Text scoreText;
-    [SerializeField] GameObject settings;
     [SerializeField] TMP_InputField ySens;
     [SerializeField] Slider ySlider;
+    [SerializeField] CanvasGroup panelClose;
+    [SerializeField] CanvasGroup panelOpen;
+    [SerializeField] CanvasGroup mainPanel;
+    [SerializeField] RectTransform SidePanel;
+    public bool isPanelOpen = false;
 
     private void Awake()
     {
@@ -23,19 +28,36 @@ public class UIManagerLivesMode : MonoBehaviour
         }
     }
 
-    public void onButtonClick()
+    public void OnPlaceClick()
     {
-        Raycasting.instance.FreezeObject();
+        Raycasting.instance.PlaceDustbin();
+    }
+
+    public void OnRemoveClick()
+    {
+        Raycasting.instance.RemoveDustbin();
     }
 
     public void OnSettingsClick()
     {
-        settings.SetActive(true);
+        isPanelOpen = true;
+        SidePanel.DOAnchorPos(new Vector2(0f, 0f), 0.75f, false).SetEase(Ease.OutExpo);
+        mainPanel.DOFade(0, 0.75f);
+        panelOpen.transform.gameObject.SetActive(false);
+        panelOpen.DOFade(0, 0.75f);
+        panelClose.transform.gameObject.SetActive(true);
+        panelClose.DOFade(1, 0.75f);
     }
 
     public void OnExitclick()
     {
-        settings.SetActive(false);
+        isPanelOpen = false;
+        SidePanel.DOAnchorPos(new Vector2(Screen.width, 0f), 0.75f, false).SetEase(Ease.OutQuint);
+        mainPanel.DOFade(1, 0.75f);
+        panelOpen.transform.gameObject.SetActive(true);
+        panelOpen.DOFade(1, 0.75f);
+        panelClose.transform.gameObject.SetActive(false);
+        panelClose.DOFade(0, 0.75f);
     }
 
     public void OnExitGame()

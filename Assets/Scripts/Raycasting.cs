@@ -96,10 +96,12 @@ public class Raycasting : MonoBehaviour
 
         placeButton.SetActive(false);
         PaperManager.Instance.ResetBall();
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
         {
             UIManagerChallengeMode.Instance.StartTimer();
         }
+        if(SceneManager.GetActiveScene().buildIndex == 5)
+            UIManagerEasyMode.Instance.StartTimer();
     }
 
     public void RemoveDustbin()
@@ -127,7 +129,7 @@ public class Raycasting : MonoBehaviour
     {
         PaperManager.Instance.StopInvoke();
 
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
         {
             if (cameraObj.transform.childCount >= 2)
             {
@@ -140,7 +142,7 @@ public class Raycasting : MonoBehaviour
                 }
             }
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 5)
         {
             foreach (Transform child in cameraObj.transform)
             {

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class UIManagerChallengeMode : MonoBehaviour
 {
@@ -17,17 +18,20 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] GameObject timerUp;
     [SerializeField] GameObject leftWind;
     [SerializeField] GameObject rightWind;
-    [SerializeField] RectTransform mainPanel;
+    [SerializeField] CanvasGroup mainPanel;
+    [SerializeField] RectTransform SidePanel;
     [SerializeField] TMP_InputField ySens;
     [SerializeField] Slider ySlider;
     [SerializeField] Slider timerSlider;
-    [SerializeField] Animator panel;
     [SerializeField] Image fillImage;
+    [SerializeField] CanvasGroup panelClose;
+    [SerializeField] CanvasGroup panelOpen;
+    public bool isPanelOpen = false;
     public float maxTimer = 120f;
-    public float timerLeft;
-    bool timerActive = true;
+    public float timerLeft = 0;
+    bool timerActive = false;
     int startCoins, endCoins;
-    float hue = 130;
+    float t = 0f;
 
     private void Awake()
     {
@@ -54,10 +58,10 @@ public class UIManagerChallengeMode : MonoBehaviour
                 TimerUp();
             }
 
-            hue += ((maxTimer - timerLeft) * 5.1f) + 130;
+            t += Time.deltaTime / maxTimer;
             timerLeft -= Time.deltaTime;
             timerSlider.value = timerLeft;
-            fillImage.color = Color.HSVToRGB(hue, 100f, 100f);
+            fillImage.color = Color.Lerp(Color.green, Color.red, t);
 
             if (timerLeft <= 0f)
             {
@@ -68,6 +72,8 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void StartTimer()
     {
+        if (timerActive)
+            return;
         timerLeft = maxTimer;
         timerSlider.value = timerLeft;
         timerActive = true;
@@ -114,13 +120,24 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnSettingsClick()
     {
-        panel.SetBool("isClick", true);
+        isPanelOpen = true;
+        SidePanel.DOAnchorPos(new Vector2(0f, 0f), 0.75f, false).SetEase(Ease.OutExpo);
+        mainPanel.DOFade(0, 0.75f);
+        panelOpen.transform.gameObject.SetActive(false);
+        panelOpen.DOFade(0, 0.75f);
+        panelClose.transform.gameObject.SetActive(true);
+        panelClose.DOFade(1, 0.75f);
     }
 
     public void OnExitclick()
     {
-        panel.SetBool("isClick", false);
-        //mainPanel.SetActive(true);
+        isPanelOpen = false;
+        SidePanel.DOAnchorPos(new Vector2(Screen.width, 0f), 0.75f, false).SetEase(Ease.OutQuint);
+        mainPanel.DOFade(1, 0.75f);
+        panelOpen.transform.gameObject.SetActive(true);
+        panelOpen.DOFade(1, 0.75f);
+        panelClose.transform.gameObject.SetActive(false);
+        panelClose.DOFade(0, 0.75f);
     }
 
     public void OnExitGame()
@@ -164,5 +181,20 @@ public class UIManagerChallengeMode : MonoBehaviour
             ySlider.value = n;
             ySens.text = n.ToString();
         }
+    }
+
+    public void OnHardClick()
+    {
+        SceneManager.LoadScene(6);
+    }
+
+    public void OnMediumClick()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void OnEasyClick()
+    {
+        SceneManager.LoadScene(5);
     }
 }

@@ -18,11 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Shop.unity
     guid: 16fb8984aa49bed438a4ed2e1a70fc35
   - enabled: 1
-    path: Assets/Scenes/HardMode.unity
-    guid: 746d88f014d70574f8f777784030bf9e
-  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 87a22c431c172984c90fcd7584cb99e5
+  - enabled: 1
+    path: Assets/Scenes/EasyMode.unity
+    guid: 95b428a572bb8eb4bbb2b5df691d2cd4
+  - enabled: 1
+    path: Assets/Scenes/HardMode.unity
+    guid: 139e78d57118e5847bd2473454f31d17
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PaperManager : MonoBehaviour
 {
@@ -34,6 +34,8 @@ public class PaperManager : MonoBehaviour
 
     public void ResetBall()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 6)
+            Wind.Instance.ResetWind();
         Instantiate(paperBall);
     }
 }

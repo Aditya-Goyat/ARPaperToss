@@ -19,12 +19,13 @@ public class CheckTriggerEnter : MonoBehaviour
             {
                 UIManagerLivesMode.Instance.UpdateScore();
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
+            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6 || SceneManager.GetActiveScene().buildIndex == 5)
             {
                 CoinsManager.Instance.Coins += 500000;
                 UIManagerChallengeMode.Instance.UpdateScore();
                 UIManagerChallengeMode.Instance.UpdateCoins();
-                Wind.Instance.ResetWind();
+                if(SceneManager.GetActiveScene().buildIndex == 2)
+                    Wind.Instance.ResetWind();
             }
         }
     }

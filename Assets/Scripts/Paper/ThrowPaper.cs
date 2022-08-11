@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ThrowPaper : MonoBehaviour
 {
@@ -32,6 +33,18 @@ public class ThrowPaper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6) {
+            if (UIManagerChallengeMode.Instance.isPanelOpen)
+                return;
+        }else if(SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            if (UIManagerEasyMode.Instance.isPanelOpen)
+                return;
+        }else if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (UIManagerLivesMode.Instance.isPanelOpen)
+                return;
+        }
 
         if (holding)
         {
