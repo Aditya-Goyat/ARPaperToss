@@ -5,7 +5,7 @@ public class Wind : MonoBehaviour
 {
     public static Wind Instance;
     Rigidbody _rigidbody;
-    float windForce;
+    float windForce = 0, previousWind;
     bool applyWind;
     [SerializeField] float maxWind = 5f;
 
@@ -51,7 +51,9 @@ public class Wind : MonoBehaviour
 
     public void ResetWind()
     {
-        windForce = Random.Range(-maxWind, maxWind);
+        previousWind = windForce;
+        while(previousWind == windForce)
+            windForce = Random.Range(-maxWind, maxWind);
         UIManagerChallengeMode.Instance.UpdateWind(Mathf.RoundToInt(windForce));
     }
 }

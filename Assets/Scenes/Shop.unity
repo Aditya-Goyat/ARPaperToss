@@ -1187,6 +1187,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71eac94a6dcf0484a9d25f1047bdfb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buyButtons:
+  - {fileID: 1823993596}
+  - {fileID: 144699309}
+  - {fileID: 617318563}
+  - {fileID: 170183578}
+  - {fileID: 1479988734}
+  - {fileID: 7059212}
+  buy: {fileID: 21300000, guid: 4858092192f2e304588fd17633dd43c6, type: 3}
+  equip: {fileID: 21300000, guid: c7309d54729aebd43a2aa242df73996c, type: 3}
   coinsAmount: {fileID: 599565815}
   heartAmount: {fileID: 561017954}
 --- !u!1 &561017952
@@ -2348,7 +2357,7 @@ GameObject:
   - component: {fileID: 1823993597}
   - component: {fileID: 1823993596}
   m_Layer: 5
-  m_Name: RecyclingDustbin (1)
+  m_Name: DefaultDustbin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

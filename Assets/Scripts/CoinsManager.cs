@@ -5,9 +5,10 @@ using UnityEngine;
 public class CoinsManager : MonoBehaviour
 {
     public static CoinsManager Instance;
-    int coinsAmount = 0;
+    int coinsAmount = 0, heartAmount = 0;
     public int[] isUnlocked;
     public int Coins { get { return coinsAmount; } set { coinsAmount = value; } }
+    public int Heart { get { return heartAmount; } set { heartAmount = value; } }
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class CoinsManager : MonoBehaviour
         if (PlayerPrefs.HasKey("coinsAmount"))
         {
             coinsAmount = PlayerPrefs.GetInt("coinsAmount");
+            heartAmount = PlayerPrefs.GetInt("heartAmount");
             for(int i = 0; i < 6; i++)
             {
                 isUnlocked[i] = PlayerPrefs.GetInt("isUnlocked" + i);
@@ -35,6 +37,7 @@ public class CoinsManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("coinsAmount", coinsAmount);
+        PlayerPrefs.SetInt("heartAmount", heartAmount);
         for(int i = 0; i < 6; i++)
         {
             PlayerPrefs.SetInt("isUnlocked" + i, isUnlocked[i]);

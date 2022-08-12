@@ -573,8 +573,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinsManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8274008968516408123, guid: 0e4edae153d9999459d401c79f540b9f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4edae153d9999459d401c79f540b9f, type: 3}
 --- !u!1001 &8635122617272116230
 PrefabInstance:
