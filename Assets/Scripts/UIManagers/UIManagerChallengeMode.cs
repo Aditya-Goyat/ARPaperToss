@@ -13,6 +13,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text finalScore;
     [SerializeField] TMP_Text coinsText;
+    [SerializeField] TMP_Text heartText;
     [SerializeField] TMP_Text coinsGainedText;
     [SerializeField] TMP_Text windText;
     [SerializeField] GameObject timerUp;
@@ -154,6 +155,8 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void UpdateCoins()
     {
         coinsText.text = CoinsManager.Instance.Coins.ToString();
+        heartText.text = CoinsManager.Instance.Heart.ToString();
+        CoinsManager.Instance.Save();
     }
 
     public void OnSliderYChanged(float value)

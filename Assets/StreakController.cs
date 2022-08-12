@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class StreakController : MonoBehaviour
 {
-    float maxTimer = 5f;
+    public float maxTimer = 5f;
     float timerLeft;
     int streakAmount = 0;
-    [SerializeField] TMP_Text streakAmountText;
     [SerializeField] Slider timerSlider;
     [SerializeField] Sprite _1x;
     [SerializeField] Sprite _2x;
@@ -28,7 +27,6 @@ public class StreakController : MonoBehaviour
     void Start()
     {
         timerLeft = 0f;
-        streakAmountText.text = streakAmount.ToString();
     }
 
     // Update is called once per frame
@@ -41,7 +39,6 @@ public class StreakController : MonoBehaviour
             streakAmountImage.gameObject.SetActive(false);
             timerSlider.gameObject.SetActive(false);
             streakAmount = 0;
-            streakAmountText.text = streakAmount.ToString();
         }
 
         timerLeft -= Time.deltaTime;
@@ -60,8 +57,12 @@ public class StreakController : MonoBehaviour
         instance.timerSlider.gameObject.SetActive(true);
         instance.streakAmountImage.gameObject.SetActive(true);
         instance.streakAmount++;
-        if (instance.streakAmount == 3)
+        Debug.Log(CheckTriggerEnter.GetDistance());
+        if (instance.streakAmount == 3 && CheckTriggerEnter.GetDistance() > 3f)
+        {
+            Debug.Log(2);
             CoinsManager.Instance.Heart += 10;
+        }
         instance.streakAmount = instance.streakAmount % 3;
         switch (instance.streakAmount)
         {
@@ -81,7 +82,6 @@ public class StreakController : MonoBehaviour
                 instance.timerSlider.gameObject.SetActive(false);
                 break;
         }
-        instance.streakAmountText.text = instance.streakAmount.ToString();
         instance.timerLeft = instance.maxTimer;
     }
 }

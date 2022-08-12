@@ -3,9 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class CheckTriggerEnter : MonoBehaviour
 {
-    private void Update()
-    {
+    private static CheckTriggerEnter instance;
 
+    private void Awake()
+    {
+        instance = this;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,5 +33,10 @@ public class CheckTriggerEnter : MonoBehaviour
                     Wind.Instance.ResetWind();
             }
         }
+    }
+
+    public static float GetDistance()
+    {
+        return Vector3.Distance(Camera.main.transform.position, instance.transform.position);
     }
 }

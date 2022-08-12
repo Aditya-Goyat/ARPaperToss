@@ -33,9 +33,19 @@ public class ShopManager : MonoBehaviour
 
     public bool TryToBuy(int price)
     {
-        if(price <= CoinsManager.Instance.Coins)
-            return true;
+        if (price > 10000)
+        {
+            if (price <= (CoinsManager.Instance.Heart / 100))
+                return true;
+            else
+                return false;
+        }
         else
-            return false;
+        {
+            if (price <= CoinsManager.Instance.Coins)
+                return true;
+            else
+                return false;
+        }
     }
 }

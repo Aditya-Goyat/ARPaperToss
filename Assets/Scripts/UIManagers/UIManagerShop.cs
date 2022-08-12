@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UIManagerShop : MonoBehaviour
 {
     //[SerializeField] TMP_Text noFundsText;
-    int[] price = new int[6] {0, 1000, 2000, 3000, 5000, 10000};
+    int[] price = new int[6] {0, 1000, 3000, 7000, 20000, 100000};
     public Image[] buyButtons = new Image[6];
     public Sprite buy, equip;
     [SerializeField] TMP_Text coinsAmount;
@@ -17,10 +17,12 @@ public class UIManagerShop : MonoBehaviour
     public void Start()
     {
         UpdateCoinText();
+        SetBuyButtons();
     }
 
     public void SetBuyButtons()
     {
+        Debug.Log(1);
         for(int i = 0; i < 6; i++)
         {
             if (CoinsManager.Instance.isUnlocked[i] == 1)
@@ -33,20 +35,23 @@ public class UIManagerShop : MonoBehaviour
         if(CoinsManager.Instance.isUnlocked[index] == 1)
         {
             ShopManager.Instance.dustbinIndex = index;
+            SetBuyButtons();
             ShopManager.Instance.Save();
         }
         else
         {
             if(ShopManager.Instance.TryToBuy(price[index]))
             {
-                CoinsManager.Instance.Coins -= price[index];
-                if(CoinsManager.Instance.isUnlocked[index] == 1)
-                    ShopManager.Instance.dustbinIndex = index;
+                if(price[index] > 10000)
+                    CoinsManager.Instance.Heart -= (price[index] / 100);
+                else
+                    CoinsManager.Instance.Coins -= price[index];
+
                 CoinsManager.Instance.isUnlocked[index] = 1;
+                CoinsManager.Instance.Save();
                 SetBuyButtons();
                 ShopManager.Instance.Save();
                 UpdateCoinText();
-                CoinsManager.Instance.Save();
             }
             else
             {
