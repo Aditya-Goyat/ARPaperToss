@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
     {
         if (price > 10000)
         {
-            if (price <= (CoinsManager.Instance.Heart / 100))
+            if (price/100 <= CoinsManager.Instance.Heart)
                 return true;
             else
                 return false;

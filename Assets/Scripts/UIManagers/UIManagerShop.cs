@@ -10,23 +10,41 @@ public class UIManagerShop : MonoBehaviour
     //[SerializeField] TMP_Text noFundsText;
     int[] price = new int[6] {0, 1000, 3000, 7000, 20000, 100000};
     public Image[] buyButtons = new Image[6];
-    public Sprite buy, equip;
+    public Image[] icons = new Image[6];
+    public Image[] priceIcons = new Image[6];
+    public TMP_Text[] priceAmount = new TMP_Text[6];
+    public Sprite buy, equip, tick;
     [SerializeField] TMP_Text coinsAmount;
     [SerializeField] TMP_Text heartAmount;
+    [SerializeField] GameObject cheaterButton;
 
     public void Start()
     {
         UpdateCoinText();
         SetBuyButtons();
+
+        if(Debug.isDebugBuild)
+            cheaterButton.SetActive(true);
     }
 
     public void SetBuyButtons()
     {
-        Debug.Log(1);
+        for(int i = 1; i < 6; i++)
+        {
+            if (CoinsManager.Instance.isUnlocked[i] == 1)
+            {
+                priceIcons[i].gameObject.SetActive(false);
+                priceAmount[i].gameObject.SetActive(false);
+                icons[i].rectTransform.sizeDelta = new Vector2(200f, 200f);
+            }
+        }
+
         for(int i = 0; i < 6; i++)
         {
             if (CoinsManager.Instance.isUnlocked[i] == 1)
                 buyButtons[i].sprite = equip;
+            if (ShopManager.Instance.dustbinIndex == i)
+                buyButtons[i].sprite = tick;
         }
     }
 
@@ -74,5 +92,14 @@ public class UIManagerShop : MonoBehaviour
     public void NotEnoughFunds()
     {
 
+    }
+
+    public void OnCheaterClick()
+    {
+        CoinsManager.Instance.Coins += 1000000;
+        CoinsManager.Instance.Heart += 1000000;
+
+        CoinsManager.Instance.Save();
+        UpdateCoinText();
     }
 }

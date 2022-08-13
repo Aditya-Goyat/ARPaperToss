@@ -60,3 +60,4 @@ MonoBehaviour:
   minimumDistance: 2
   cameraObj: {fileID: 0}
   placeButton: {fileID: 0}
+  distance: {fileID: 0}

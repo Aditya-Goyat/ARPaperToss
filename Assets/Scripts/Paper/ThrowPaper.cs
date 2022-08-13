@@ -121,7 +121,7 @@ public class ThrowPaper : MonoBehaviour
     {
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.useGravity = true;
-        inputPositionDifference.y = (inputPosition.y - inputPositionPivot.y) / Screen.height * PaperManager.Instance.sensivity.y;
+        inputPositionDifference.y = (inputPosition.y - inputPositionPivot.y) / Screen.height * CoinsManager.Instance.sensitivity;
         inputPositionDifference.x = (inputPosition.x - inputPositionPivot.x) / Screen.width;
         inputPositionDifference.x = Mathf.Abs(inputPosition.x - inputPositionPivot.x) / Screen.width * PaperManager.Instance.sensivity.x * inputPositionDifference.x;
         direction = new Vector3(inputPositionDifference.x, 0f, 1f);

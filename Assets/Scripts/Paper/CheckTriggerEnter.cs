@@ -20,23 +20,44 @@ public class CheckTriggerEnter : MonoBehaviour
             {
                 UIManagerLivesMode.Instance.UpdateScore();
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6 || SceneManager.GetActiveScene().buildIndex == 5)
+            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
             {
-                if(Vector3.Distance(Camera.main.transform.position, transform.position) >= 3f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 5f)
-                    CoinsManager.Instance.Coins += 10000;
-                else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 5f)
-                    CoinsManager.Instance.Coins += 20000;
+                if (SceneManager.GetActiveScene().buildIndex == 2)
+                {
+                    if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
+                        CoinsManager.Instance.Coins += 10;
+                    else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 3f)
+                        CoinsManager.Instance.Coins += 20;
+                }else if(SceneManager.GetActiveScene().buildIndex == 6)
+                {
+                    if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
+                        CoinsManager.Instance.Coins += 20;
+                    else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 3f)
+                        CoinsManager.Instance.Coins += 30;
+                }
+
                 UIManagerChallengeMode.Instance.UpdateScore();
                 UIManagerChallengeMode.Instance.UpdateCoins();
-                StreakController.ResetTimer();
+
+                if(Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
+                    StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
+
                 if(SceneManager.GetActiveScene().buildIndex == 2)
                     Wind.Instance.ResetWind();
+                
+            }else if(SceneManager.GetActiveScene().buildIndex == 5)
+            {
+                if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
+                    CoinsManager.Instance.Coins += 5;
+                else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 3f)
+                    CoinsManager.Instance.Coins += 10;
+
+                UIManagerEasyMode.Instance.UpdateCoins();
+                UIManagerEasyMode.Instance.UpdateScore();
+
+                if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
+                    StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
             }
         }
-    }
-
-    public static float GetDistance()
-    {
-        return Vector3.Distance(Camera.main.transform.position, instance.transform.position);
     }
 }

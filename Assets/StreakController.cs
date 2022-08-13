@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
@@ -50,18 +51,35 @@ public class StreakController : MonoBehaviour
         }
     }
 
-    public static void ResetTimer()
+    public static void ResetTimer(float distance)
     {
         instance.streakBg.gameObject.SetActive(true);
         instance.streakText.gameObject.SetActive(true);
         instance.timerSlider.gameObject.SetActive(true);
         instance.streakAmountImage.gameObject.SetActive(true);
         instance.streakAmount++;
-        Debug.Log(CheckTriggerEnter.GetDistance());
-        if (instance.streakAmount == 3 && CheckTriggerEnter.GetDistance() > 3f)
+        if (instance.streakAmount == 3)
         {
-            Debug.Log(2);
-            CoinsManager.Instance.Heart += 10;
+            if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                if (distance >= 2f && distance < 3f)
+                    CoinsManager.Instance.Heart += 10;
+                else if (distance >= 3f)
+                    CoinsManager.Instance.Heart += 30;
+            }else if(SceneManager.GetActiveScene().buildIndex == 5)
+            {
+                if (distance >= 2f && distance < 3f)
+                    CoinsManager.Instance.Heart += 5;
+                else if (distance >= 3f)
+                    CoinsManager.Instance.Heart += 10;
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 6)
+            {
+                if (distance >= 2f && distance < 3f)
+                    CoinsManager.Instance.Heart += 50;
+                else if (distance >= 3f)
+                    CoinsManager.Instance.Heart += 100;
+            }
         }
         instance.streakAmount = instance.streakAmount % 3;
         switch (instance.streakAmount)

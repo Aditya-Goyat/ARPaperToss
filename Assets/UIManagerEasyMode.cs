@@ -12,6 +12,7 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text finalScore;
     [SerializeField] TMP_Text coinsText;
+    [SerializeField] TMP_Text heartText;
     [SerializeField] TMP_Text coinsGainedText;
     [SerializeField] GameObject timerUp;
     [SerializeField] CanvasGroup mainPanel;
@@ -43,6 +44,7 @@ public class UIManagerEasyMode : MonoBehaviour
         startCoins = CoinsManager.Instance.Coins;
 
         UpdateCoins();
+        UpdateSensitivity();
     }
 
     private void Update()
@@ -133,12 +135,21 @@ public class UIManagerEasyMode : MonoBehaviour
     public void UpdateCoins()
     {
         coinsText.text = CoinsManager.Instance.Coins.ToString();
+        heartText.text = CoinsManager.Instance.Heart.ToString();
+        CoinsManager.Instance.Save();
     }
 
-    public void OnSliderYChanged(float value)
+    public void OnSliderYChanged(int value)
     {
-        PaperManager.Instance.sensivity.y = value;
+        CoinsManager.Instance.sensitivity = value;
         ySens.text = value.ToString();
+        CoinsManager.Instance.Save();
+    }
+
+    private void UpdateSensitivity()
+    {
+        ySens.text = CoinsManager.Instance.sensitivity.ToString();
+        ySlider.value = CoinsManager.Instance.sensitivity;
     }
 
     public void OnEnterYValue(string s)
@@ -156,7 +167,7 @@ public class UIManagerEasyMode : MonoBehaviour
             }
 
             int n = Mathf.RoundToInt(num);
-            PaperManager.Instance.sensivity.y = n;
+            CoinsManager.Instance.sensitivity = n;
             ySlider.value = n;
             ySens.text = n.ToString();
         }

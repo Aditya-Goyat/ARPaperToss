@@ -48,6 +48,7 @@ public class UIManagerChallengeMode : MonoBehaviour
         startCoins = CoinsManager.Instance.Coins;
 
         UpdateCoins();
+        UpdateSensitivity();
     }
 
     private void Update()
@@ -161,8 +162,15 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnSliderYChanged(float value)
     {
-        PaperManager.Instance.sensivity.y = value;
+        CoinsManager.Instance.sensitivity = Mathf.RoundToInt(value);
         ySens.text = value.ToString();
+        CoinsManager.Instance.Save();
+    }
+
+    private void UpdateSensitivity()
+    {
+        ySens.text = CoinsManager.Instance.sensitivity.ToString();
+        ySlider.value = CoinsManager.Instance.sensitivity;
     }
 
     public void OnEnterYValue(string s)
@@ -180,7 +188,7 @@ public class UIManagerChallengeMode : MonoBehaviour
             }
 
             int n = Mathf.RoundToInt(num);
-            PaperManager.Instance.sensivity.y = n;
+            CoinsManager.Instance.sensitivity = n;
             ySlider.value = n;
             ySens.text = n.ToString();
         }

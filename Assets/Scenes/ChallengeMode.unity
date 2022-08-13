@@ -329,6 +329,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 777f60ddb8fa7d144bca91e2ec61aea0, type: 3}
+--- !u!114 &1522923864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1522923864, guid: ae92b3825f3477640b8e099b316a78cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118427080873021162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2035228142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -477,6 +489,11 @@ PrefabInstance:
       objectReference: {fileID: 8776561793043058336}
     - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
         type: 3}
+      propertyPath: distance
+      value: 
+      objectReference: {fileID: 1522923864}
+    - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
+        type: 3}
       propertyPath: cameraObj
       value: 
       objectReference: {fileID: 8776561793043058338}
@@ -504,10 +521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 498531439, guid: ae92b3825f3477640b8e099b316a78cc, type: 3}
-      propertyPath: m_MaxValue
-      value: 45
-      objectReference: {fileID: 0}
     - target: {fileID: 1114495058, guid: ae92b3825f3477640b8e099b316a78cc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -635,6 +648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384530443400828404, guid: ae92b3825f3477640b8e099b316a78cc,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6369419199829986220, guid: ae92b3825f3477640b8e099b316a78cc,
         type: 3}

@@ -23,6 +23,7 @@ public class Raycasting : MonoBehaviour
     public GameObject cameraObj;
     GameObject paperManager;
     public GameObject placeButton;
+    public TMP_Text distance;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,6 +44,11 @@ public class Raycasting : MonoBehaviour
     {
         if (Input.touchCount > 0 && arPlaneManager.enabled)
             Spawn();
+
+        if(placedDustbin != null)
+            distance.text = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position).ToString("F1");
+        else if (placingDustbin != null)
+            distance.text = Vector3.Distance(Camera.main.transform.position, placingDustbin.transform.position).ToString("F1");
     }
 
     private void Spawn()

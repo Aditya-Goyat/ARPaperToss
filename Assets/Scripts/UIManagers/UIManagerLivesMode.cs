@@ -26,6 +26,8 @@ public class UIManagerLivesMode : MonoBehaviour
         {
             Instance = this;
         }
+
+        UpdateSensitivity();
     }
 
     public void OnPlaceClick()
@@ -70,10 +72,17 @@ public class UIManagerLivesMode : MonoBehaviour
         scoreText.text = ScoreManager.Instance.Score.ToString();
     }
 
-    public void OnSliderYChanged(float value)
+    public void OnSliderYChanged(int value)
     {
-        PaperManager.Instance.sensivity.y = value;
+        CoinsManager.Instance.sensitivity = value;
         ySens.text = value.ToString();
+        CoinsManager.Instance.Save();
+    }
+
+    private void UpdateSensitivity()
+    {
+        ySens.text = CoinsManager.Instance.sensitivity.ToString();
+        ySlider.value = CoinsManager.Instance.sensitivity;
     }
 
     public void OnEnterYValue(string s)
@@ -91,7 +100,7 @@ public class UIManagerLivesMode : MonoBehaviour
             }
 
             int n = Mathf.RoundToInt(num);
-            PaperManager.Instance.sensivity.y = n;
+            CoinsManager.Instance.sensitivity = n;
             ySlider.value = n;
             ySens.text = n.ToString();
         }

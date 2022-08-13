@@ -52,7 +52,7 @@ public class Wind : MonoBehaviour
     public void ResetWind()
     {
         previousWind = windForce;
-        while(previousWind == windForce)
+        while(Mathf.FloorToInt(previousWind) == Mathf.FloorToInt(windForce))
             windForce = Random.Range(-maxWind, maxWind);
         UIManagerChallengeMode.Instance.UpdateWind(Mathf.RoundToInt(windForce));
     }
