@@ -17,7 +17,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] TMP_Text coinsGainedText;
     [SerializeField] TMP_Text heartsGainedText;
     [SerializeField] TMP_Text windText;
-    [SerializeField] GameObject timerUp;
+    [SerializeField] RectTransform timerUp;
     [SerializeField] GameObject leftWind;
     [SerializeField] GameObject rightWind;
     [SerializeField] CanvasGroup mainPanel;
@@ -35,7 +35,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public bool isPanelOpen = false;
     public float maxTimer = 120f;
     public float timerLeft = 0;
-    bool timerActive = false;
+    bool timerActive = false, played = false;
     int startCoins, endCoins, startHeart, endHeart;
     float t = 0f;
 
@@ -53,6 +53,7 @@ public class UIManagerChallengeMode : MonoBehaviour
         startCoins = CoinsManager.Instance.Coins;
         startHeart = CoinsManager.Instance.Heart;
 
+        CoinsManager.Instance.gameOver = false;
         UpdateCoins();
         UpdateSensitivity();
     }
@@ -61,6 +62,11 @@ public class UIManagerChallengeMode : MonoBehaviour
     {
         if (timerActive)
         {
+            if (timerLeft <= 10f && !played)
+            {
+                AudioManager.Instance.timerAudioSource.Play();
+                played = true;
+            }
             if (timerLeft <= 0f)
             {
                 TimerUp();
@@ -105,6 +111,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void ExitScene()
     {
         CoinsManager.Instance.Save();
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(0);
     }
 
@@ -115,7 +122,8 @@ public class UIManagerChallengeMode : MonoBehaviour
         panelOpen.gameObject.SetActive(false);
         endCoins = CoinsManager.Instance.Coins;
         endHeart = CoinsManager.Instance.Heart;
-        timerUp.SetActive(true);
+        timerUp.DOScale(1f, 0.5f).SetEase(Ease.OutCubic);
+        CoinsManager.Instance.gameOver = true;
         coinsGainedText.text = (endCoins - startCoins).ToString();
         heartsGainedText.text = (endHeart - startHeart).ToString();
         finalScore.text = ScoreManager.Instance.Score.ToString();
@@ -124,16 +132,19 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnPlaceClick()
     {
         Raycasting.instance.PlaceDustbin();
+        AudioManager.Instance.uiClickSource.Play();
     }
 
     public void OnRemoveClick()
     {
         Raycasting.instance.RemoveDustbin();
+        AudioManager.Instance.uiClickSource.Play();
         OnExitclick();
     }
 
     public void OnSettingsClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         isPanelOpen = true;
         SidePanel.DOAnchorPos(new Vector2(0f, 0f), 0.75f, false).SetEase(Ease.OutExpo);
         mainPanel.DOFade(0, 0.75f);
@@ -145,6 +156,7 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnExitclick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         isPanelOpen = false;
         SidePanel.DOAnchorPos(new Vector2(Screen.width, 0f), 0.75f, false).SetEase(Ease.OutQuint);
         mainPanel.DOFade(1, 0.75f);
@@ -156,6 +168,7 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnExitGame()
     {
+        AudioManager.Instance.uiClickSource.Play();
         CoinsManager.Instance.Save();
         AudioManager.Instance.OnMainScreenLoad();
         SceneManager.LoadScene(0);
@@ -209,26 +222,31 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnHardClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(6);
     }
 
     public void OnMediumClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(2);
     }
 
     public void OnEasyClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(5);
     }
 
     public void OnReload()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnQuestionClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         helpPanel.DOScale(1f, 0.5f).SetEase(Ease.OutCubic);
         questionMark.SetActive(false);
         back.SetActive(true);
@@ -237,6 +255,7 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void OnBackClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         helpPanel.DOScale(0f, 0.5f).SetEase(Ease.OutCubic);
         questionMark.SetActive(true);
         back.SetActive(false);

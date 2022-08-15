@@ -13,28 +13,27 @@ public class UIManagerMainScreen : MonoBehaviour
 
     public void OnPlayLives()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(1);
+        AudioManager.Instance.OnPlayGame();
     }
 
     public void OnPlayTimer()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(2);
         AudioManager.Instance.OnPlayGame();
-        //AudioManager.Instance.StartCoroutine("OnPlayGame");
     }
 
     public void OnShopClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(3);
-    }
-
-    public void OnHardClick()
-    {
-        SceneManager.LoadScene(4);
     }
 
     public void OnSettingsClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         mainPanel.SetActive(false);
         settingsPanel.SetActive(true);
         UpdateSensitivity();
@@ -42,6 +41,7 @@ public class UIManagerMainScreen : MonoBehaviour
 
     public void OnBackClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         mainPanel.SetActive(true);
         settingsPanel.SetActive(false);
     }

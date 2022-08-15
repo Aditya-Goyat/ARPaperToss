@@ -3,13 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class CheckTriggerEnter : MonoBehaviour
 {
-    private static CheckTriggerEnter instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Target"))

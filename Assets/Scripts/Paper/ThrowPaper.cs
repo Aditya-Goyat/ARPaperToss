@@ -46,6 +46,9 @@ public class ThrowPaper : MonoBehaviour
                 return;
         }
 
+        if (CoinsManager.Instance.gameOver)
+            return;
+
         if (holding)
         {
             OnTouch();

@@ -8,6 +8,7 @@ public class CoinsManager : MonoBehaviour
     int coinsAmount = 0, heartAmount = 0;
     public int[] isUnlocked;
     public int sensitivity = 65;
+    public bool gameOver = false;
     public int Coins { get { return coinsAmount; } set { coinsAmount = value; } }
     public int Heart { get { return heartAmount; } set { heartAmount = value; } }
 

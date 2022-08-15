@@ -52,8 +52,9 @@ public class UIManagerShop : MonoBehaviour
 
     public void OnDustbinChoose(int index)
     {
-        if(CoinsManager.Instance.isUnlocked[index] == 1)
+        if (CoinsManager.Instance.isUnlocked[index] == 1)
         {
+            AudioManager.Instance.uiClickSource.Play();
             ShopManager.Instance.dustbinIndex = index;
             SetBuyButtons();
             ShopManager.Instance.Save();
@@ -62,6 +63,7 @@ public class UIManagerShop : MonoBehaviour
         {
             if(ShopManager.Instance.TryToBuy(price[index]))
             {
+                AudioManager.Instance.uiClickSource.Play();
                 audioSource.PlayOneShot(buySound);
                 if(price[index] > 10000)
                     CoinsManager.Instance.Heart -= (price[index] / 100);
@@ -89,18 +91,20 @@ public class UIManagerShop : MonoBehaviour
 
     public void OnBackClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(0);
     }
 
     public void NotEnoughFunds()
     {
-        audioSource.PlayOneShot(notEnoughBalanceSound);
+        audioSource.Stop();
+        audioSource.PlayOneShot(notEnoughBalanceSound, 0.5f);
     }
 
     public void OnCheaterClick()
     {
-        CoinsManager.Instance.Coins += 1000000;
-        CoinsManager.Instance.Heart += 1000000;
+        CoinsManager.Instance.Coins += 10000;
+        CoinsManager.Instance.Heart += 10000;
 
         CoinsManager.Instance.Save();
         UpdateCoinText();

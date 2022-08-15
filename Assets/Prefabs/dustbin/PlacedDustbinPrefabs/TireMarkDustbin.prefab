@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2221694221120033229}
   - component: {fileID: 4121352582120940807}
   - component: {fileID: 4212612882508536370}
+  - component: {fileID: 215814710452337729}
   m_Layer: 0
   m_Name: dustbin6.1
   m_TagString: Untagged
@@ -98,6 +99,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: d356586273f5a904ca83d94fbc3c5333, type: 3}
+--- !u!114 &215814710452337729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463750635931731154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819d1c98db186d646b6ee8d59c1f2cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireworks: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f,
+    type: 3}
+  fireworksInstance: {fileID: 0}
 --- !u!1 &8723879276686753825
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,17 +32,20 @@ public class UIManagerLivesMode : MonoBehaviour
 
     public void OnPlaceClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         Raycasting.instance.PlaceDustbin();
     }
 
     public void OnRemoveClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         Raycasting.instance.RemoveDustbin();
         OnExitclick();
     }
 
     public void OnSettingsClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         isPanelOpen = true;
         SidePanel.DOAnchorPos(new Vector2(0f, 0f), 0.75f, false).SetEase(Ease.OutExpo);
         mainPanel.DOFade(0, 0.75f);
@@ -54,6 +57,7 @@ public class UIManagerLivesMode : MonoBehaviour
 
     public void OnExitclick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         isPanelOpen = false;
         SidePanel.DOAnchorPos(new Vector2(Screen.width, 0f), 0.75f, false).SetEase(Ease.OutQuint);
         mainPanel.DOFade(1, 0.75f);
@@ -65,7 +69,8 @@ public class UIManagerLivesMode : MonoBehaviour
 
     public void OnExitGame()
     {
-        AudioManager.Instance.StartCoroutine("OnMainScreenLoad");
+        AudioManager.Instance.uiClickSource.Play();
+        AudioManager.Instance.OnMainScreenLoad();
         SceneManager.LoadScene(0);
     }
 

@@ -60,6 +60,8 @@ public class StreakController : MonoBehaviour
         instance.streakAmount++;
         if (instance.streakAmount == 3)
         {
+            Debug.Log("inside if of reset Timer.");
+            CollisionAudio.instance.PlayFireworks();
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 if (distance >= 2f && distance < 3f)

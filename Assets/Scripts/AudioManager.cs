@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public AudioSource audioSource, audioSourceTransition;
+    public AudioSource audioSource, audioSourceTransition, uiClickSource, timerAudioSource, ballInDustbin;
     public AudioClip mainMenuLoop, gameLoop, transition, transition2;
 
     private void Awake()

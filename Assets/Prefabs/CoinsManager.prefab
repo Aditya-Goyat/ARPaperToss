@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUnlocked: 010000000000000000000000000000000000000000000000
+  sensitivity: 65
