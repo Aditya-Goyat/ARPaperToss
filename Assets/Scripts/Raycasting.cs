@@ -24,6 +24,8 @@ public class Raycasting : MonoBehaviour
     GameObject paperManager;
     public GameObject placeButton;
     public TMP_Text distance;
+    public AudioSource audioSource;
+    public AudioClip placeDustbinSound;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +39,7 @@ public class Raycasting : MonoBehaviour
     private void Start()
     {
         paperManager = GameObject.Find("PaperManager");
+        placeButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,9 +49,9 @@ public class Raycasting : MonoBehaviour
             Spawn();
 
         if(placedDustbin != null)
-            distance.text = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position).ToString("F1");
+            distance.text = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position).ToString("F1") + "m";
         else if (placingDustbin != null)
-            distance.text = Vector3.Distance(Camera.main.transform.position, placingDustbin.transform.position).ToString("F1");
+            distance.text = Vector3.Distance(Camera.main.transform.position, placingDustbin.transform.position).ToString("F1") + "m";
     }
 
     private void Spawn()
@@ -64,6 +67,9 @@ public class Raycasting : MonoBehaviour
                 placingDustbin = Instantiate(placingDustbinPrefabs[0]);
 
             arSessionOrigin.MakeContentAppearAt(placingDustbin.transform, (hitPose.position + new Vector3(0f, -0.1f, 0f)));
+
+            if(placeButton.activeInHierarchy == false)
+                placeButton.SetActive(true);
         }
     }
 
@@ -96,6 +102,7 @@ public class Raycasting : MonoBehaviour
 
     public void PlaceDustbin()
     {
+        audioSource.PlayOneShot(placeDustbinSound);
         arPlaneManager.enabled = false;
         DisableAllARPlanes();
         ReplaceDustbins();

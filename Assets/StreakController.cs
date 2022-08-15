@@ -81,7 +81,6 @@ public class StreakController : MonoBehaviour
                     CoinsManager.Instance.Heart += 100;
             }
         }
-        instance.streakAmount = instance.streakAmount % 3;
         switch (instance.streakAmount)
         {
             case 1:
@@ -100,6 +99,7 @@ public class StreakController : MonoBehaviour
                 instance.timerSlider.gameObject.SetActive(false);
                 break;
         }
+        instance.streakAmount = instance.streakAmount % 3;
         instance.timerLeft = instance.maxTimer;
     }
 }

@@ -38,6 +38,7 @@ public class UIManagerLivesMode : MonoBehaviour
     public void OnRemoveClick()
     {
         Raycasting.instance.RemoveDustbin();
+        OnExitclick();
     }
 
     public void OnSettingsClick()
@@ -64,6 +65,7 @@ public class UIManagerLivesMode : MonoBehaviour
 
     public void OnExitGame()
     {
+        AudioManager.Instance.StartCoroutine("OnMainScreenLoad");
         SceneManager.LoadScene(0);
     }
 

@@ -15,6 +15,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text heartText;
     [SerializeField] TMP_Text coinsGainedText;
+    [SerializeField] TMP_Text heartsGainedText;
     [SerializeField] TMP_Text windText;
     [SerializeField] GameObject timerUp;
     [SerializeField] GameObject leftWind;
@@ -27,11 +28,15 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] Image fillImage;
     [SerializeField] CanvasGroup panelClose;
     [SerializeField] CanvasGroup panelOpen;
+    [SerializeField] RectTransform helpPanel;
+    [SerializeField] GameObject questionMark;
+    [SerializeField] GameObject back;
+
     public bool isPanelOpen = false;
     public float maxTimer = 120f;
     public float timerLeft = 0;
     bool timerActive = false;
-    int startCoins, endCoins;
+    int startCoins, endCoins, startHeart, endHeart;
     float t = 0f;
 
     private void Awake()
@@ -46,6 +51,7 @@ public class UIManagerChallengeMode : MonoBehaviour
         }
 
         startCoins = CoinsManager.Instance.Coins;
+        startHeart = CoinsManager.Instance.Heart;
 
         UpdateCoins();
         UpdateSensitivity();
@@ -104,9 +110,14 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void TimerUp()
     {
+        if(isPanelOpen)
+            OnExitclick();
+        panelOpen.gameObject.SetActive(false);
         endCoins = CoinsManager.Instance.Coins;
+        endHeart = CoinsManager.Instance.Heart;
         timerUp.SetActive(true);
         coinsGainedText.text = (endCoins - startCoins).ToString();
+        heartsGainedText.text = (endHeart - startHeart).ToString();
         finalScore.text = ScoreManager.Instance.Score.ToString();
     }
 
@@ -118,6 +129,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnRemoveClick()
     {
         Raycasting.instance.RemoveDustbin();
+        OnExitclick();
     }
 
     public void OnSettingsClick()
@@ -145,6 +157,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnExitGame()
     {
         CoinsManager.Instance.Save();
+        AudioManager.Instance.OnMainScreenLoad();
         SceneManager.LoadScene(0);
     }
 
@@ -170,7 +183,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     private void UpdateSensitivity()
     {
         ySens.text = CoinsManager.Instance.sensitivity.ToString();
-        ySlider.value = CoinsManager.Instance.sensitivity;
+        ySlider.value = (float)CoinsManager.Instance.sensitivity;
     }
 
     public void OnEnterYValue(string s)
@@ -207,5 +220,26 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnEasyClick()
     {
         SceneManager.LoadScene(5);
+    }
+
+    public void OnReload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnQuestionClick()
+    {
+        helpPanel.DOScale(1f, 0.5f).SetEase(Ease.OutCubic);
+        questionMark.SetActive(false);
+        back.SetActive(true);
+        panelOpen.gameObject.SetActive(false);
+    }
+
+    public void OnBackClick()
+    {
+        helpPanel.DOScale(0f, 0.5f).SetEase(Ease.OutCubic);
+        questionMark.SetActive(true);
+        back.SetActive(false);
+        panelOpen.gameObject.SetActive(true);
     }
 }

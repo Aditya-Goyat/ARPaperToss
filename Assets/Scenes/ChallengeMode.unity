@@ -649,11 +649,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5384530443400828404, guid: ae92b3825f3477640b8e099b316a78cc,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6369419199829986220, guid: ae92b3825f3477640b8e099b316a78cc,
         type: 3}
       propertyPath: m_AnchorMax.x

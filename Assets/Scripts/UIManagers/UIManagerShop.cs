@@ -17,6 +17,8 @@ public class UIManagerShop : MonoBehaviour
     [SerializeField] TMP_Text coinsAmount;
     [SerializeField] TMP_Text heartAmount;
     [SerializeField] GameObject cheaterButton;
+    public AudioSource audioSource;
+    public AudioClip buySound, notEnoughBalanceSound;
 
     public void Start()
     {
@@ -60,6 +62,7 @@ public class UIManagerShop : MonoBehaviour
         {
             if(ShopManager.Instance.TryToBuy(price[index]))
             {
+                audioSource.PlayOneShot(buySound);
                 if(price[index] > 10000)
                     CoinsManager.Instance.Heart -= (price[index] / 100);
                 else
@@ -91,7 +94,7 @@ public class UIManagerShop : MonoBehaviour
 
     public void NotEnoughFunds()
     {
-
+        audioSource.PlayOneShot(notEnoughBalanceSound);
     }
 
     public void OnCheaterClick()

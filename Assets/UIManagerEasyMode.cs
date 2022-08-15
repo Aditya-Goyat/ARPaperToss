@@ -14,6 +14,7 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text heartText;
     [SerializeField] TMP_Text coinsGainedText;
+    [SerializeField] TMP_Text heartsGainedText;
     [SerializeField] GameObject timerUp;
     [SerializeField] CanvasGroup mainPanel;
     [SerializeField] RectTransform SidePanel;
@@ -23,11 +24,14 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] Image fillImage;
     [SerializeField] CanvasGroup panelClose;
     [SerializeField] CanvasGroup panelOpen;
+    [SerializeField] RectTransform helpPanel;
+    [SerializeField] GameObject questionMark;
+    [SerializeField] GameObject back;
     public bool isPanelOpen;
     public float maxTimer = 120f;
     public float timerLeft;
     bool timerActive = false;
-    int startCoins, endCoins;
+    int startCoins, endCoins, startHeart, endHeart;
     float t = 0f;
 
     private void Awake()
@@ -42,6 +46,7 @@ public class UIManagerEasyMode : MonoBehaviour
         }
 
         startCoins = CoinsManager.Instance.Coins;
+        startHeart = CoinsManager.Instance.Heart;
 
         UpdateCoins();
         UpdateSensitivity();
@@ -78,14 +83,20 @@ public class UIManagerEasyMode : MonoBehaviour
     public void ExitScene()
     {
         CoinsManager.Instance.Save();
+        AudioManager.Instance.StartCoroutine("OnMainScreenLoad");
         SceneManager.LoadScene(0);
     }
 
     public void TimerUp()
     {
+        if (isPanelOpen)
+            OnExitclick();
+        panelOpen.gameObject.SetActive(false);
         endCoins = CoinsManager.Instance.Coins;
+        endHeart = CoinsManager.Instance.Heart;
         timerUp.SetActive(true);
         coinsGainedText.text = (endCoins - startCoins).ToString();
+        heartsGainedText.text = (endHeart - startHeart).ToString();
         finalScore.text = ScoreManager.Instance.Score.ToString();
     }
 
@@ -97,6 +108,7 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnRemoveClick()
     {
         Raycasting.instance.RemoveDustbin();
+        OnExitclick();
     }
 
     public void OnSettingsClick()
@@ -186,5 +198,21 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnEasyClick()
     {
         SceneManager.LoadScene(5);
+    }
+
+    public void OnQuestionClick()
+    {
+        helpPanel.DOScale(1f, 0.5f).SetEase(Ease.OutCubic);
+        questionMark.SetActive(false);
+        back.SetActive(true);
+        panelOpen.gameObject.SetActive(false);
+    }
+
+    public void OnBackClick()
+    {
+        helpPanel.DOScale(0f, 0.5f).SetEase(Ease.OutCubic);
+        questionMark.SetActive(true);
+        back.SetActive(false);
+        panelOpen.gameObject.SetActive(true);
     }
 }
