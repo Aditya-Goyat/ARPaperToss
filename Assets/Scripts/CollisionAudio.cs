@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionAudio : MonoBehaviour
 {
     public static CollisionAudio instance;
+    public AudioSource success;
     public ParticleSystem fireworks, fireworksInstance = null;
 
     private void Awake()
@@ -20,7 +21,7 @@ public class CollisionAudio : MonoBehaviour
 
     public void PlayFireworks()
     {
-        Debug.Log("inside Play fireworks of collision audio");
+        success.Play();
         if(fireworksInstance == null)
             fireworksInstance = Instantiate(fireworks, transform.position, Quaternion.identity, transform);
         fireworksInstance.Play();
