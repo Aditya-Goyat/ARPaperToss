@@ -64,7 +64,16 @@ public class Raycasting : MonoBehaviour
         {
             var hitPose = hits[Mathf.FloorToInt((float)hits.Count / 2f)].pose;
             if (placingDustbin == null)
+            {
+                if (CoinsManager.Instance.tutorial)
+                {
+                    UIManagerEasyMode.Instance.placed = true;
+                    UIManagerEasyMode.Instance.StopHand();
+                    UIManagerEasyMode.Instance.ShowHandInverted();
+                }
+
                 placingDustbin = Instantiate(placingDustbinPrefabs[0]);
+            }
 
             arSessionOrigin.MakeContentAppearAt(placingDustbin.transform, (hitPose.position + new Vector3(0f, -0.1f, 0f)));
 

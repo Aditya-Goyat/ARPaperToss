@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -27,7 +29,15 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] RectTransform helpPanel;
     [SerializeField] GameObject questionMark;
     [SerializeField] GameObject back;
-    public bool isPanelOpen;
+    [SerializeField] GameObject tutorial;
+    [SerializeField] GameObject firstFrame;
+    [SerializeField] GameObject secondFrame;
+    [SerializeField] GameObject thirdFrame;
+    [SerializeField] GameObject hand;
+    [SerializeField] GameObject handInverted;
+    [SerializeField] GameObject flick;
+    [SerializeField] ARPlaneManager arPlaneManager;
+    public bool isPanelOpen, placed = false;
     public float maxTimer = 120f;
     public float timerLeft;
     bool timerActive = false, played = false;
@@ -51,10 +61,19 @@ public class UIManagerEasyMode : MonoBehaviour
         CoinsManager.Instance.gameOver = false;
         UpdateCoins();
         UpdateSensitivity();
+
+        if (CoinsManager.Instance.tutorial)
+        {
+            ShowTutorial();
+            arPlaneManager.enabled = false;
+        }
     }
 
     private void Update()
     {
+        if(tutorial && arPlaneManager.trackables.count > 0 && !placed && !tutorial.activeInHierarchy)
+            ShowHand();
+
         if (timerActive)
         {
             if (timerLeft <= 10f && !played)
@@ -111,6 +130,8 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnPlaceClick()
     {
         AudioManager.Instance.uiClickSource.Play();
+        StopHandInverted();
+        ShowFlick();
         Raycasting.instance.PlaceDustbin();
     }
 
@@ -170,6 +191,12 @@ public class UIManagerEasyMode : MonoBehaviour
         CoinsManager.Instance.sensitivity = value;
         ySens.text = value.ToString();
         CoinsManager.Instance.Save();
+    }
+
+    public void OnReload()
+    {
+        AudioManager.Instance.uiClickSource.Play();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void UpdateSensitivity()
@@ -233,5 +260,84 @@ public class UIManagerEasyMode : MonoBehaviour
         questionMark.SetActive(true);
         back.SetActive(false);
         panelOpen.gameObject.SetActive(true);
+    }
+
+    public void ShowTutorial()
+    {
+        mainPanel.gameObject.SetActive(false);
+        panelOpen.gameObject.SetActive(false);
+        tutorial.SetActive(true);
+    }
+
+    public void OnRightClickFirstFrame()
+    {
+        firstFrame.SetActive(false);
+        secondFrame.SetActive(true);
+    }
+
+    public void OnRightClickSecondFrame()
+    {
+        secondFrame.SetActive(false);
+        thirdFrame.SetActive(true);
+    }
+
+    public void OnPlayGame()
+    {
+        tutorial.SetActive(false);
+        mainPanel.gameObject.SetActive(true);
+        panelOpen.gameObject.SetActive(true);
+        arPlaneManager.enabled = true;
+    }
+
+    public void OnSkipTutorial()
+    {
+        CoinsManager.Instance.tutorial = false;
+        tutorial.SetActive(false);
+        mainPanel.gameObject.SetActive(true);
+        panelOpen.gameObject.SetActive(true);
+        arPlaneManager.enabled = true;
+    }
+
+    public void OnLeftClickThirdFrame()
+    {
+        secondFrame.SetActive(true);
+        thirdFrame.SetActive(false);
+    }
+
+    public void OnLeftClickSecondFrame()
+    {
+        firstFrame.SetActive(true);
+        secondFrame.SetActive(false);
+    }
+
+    public void ShowHand()
+    {
+        hand.SetActive(true);
+    }
+
+    public void StopHand()
+    {
+        hand.SetActive(false);
+    }
+
+    public void ShowHandInverted()
+    {
+        handInverted.SetActive(true);
+    }
+
+    public void StopHandInverted()
+    {
+        handInverted.SetActive(false);
+    }
+
+    public void ShowFlick()
+    {
+        flick.SetActive(true);
+    }
+
+    public void StopFlick()
+    {
+        flick.SetActive(false);
+        CoinsManager.Instance.tutorial = false;
     }
 }

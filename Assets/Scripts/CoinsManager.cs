@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoinsManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class CoinsManager : MonoBehaviour
     public int[] isUnlocked;
     public int sensitivity = 65;
     public bool gameOver = false;
+    [HideInInspector]
+    public bool tutorial = true;
     public int Coins { get { return coinsAmount; } set { coinsAmount = value; } }
     public int Heart { get { return heartAmount; } set { heartAmount = value; } }
 

@@ -21,6 +21,12 @@ public class UIManagerMainScreen : MonoBehaviour
     public void OnPlayTimer()
     {
         AudioManager.Instance.uiClickSource.Play();
+        if (CoinsManager.Instance.tutorial)
+        {
+            SceneManager.LoadScene(5);
+            AudioManager.Instance.OnPlayGame();
+            return;
+        }
         SceneManager.LoadScene(2);
         AudioManager.Instance.OnPlayGame();
     }

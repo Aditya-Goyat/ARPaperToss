@@ -29,13 +29,13 @@ public class CheckTriggerEnter : MonoBehaviour
                         CoinsManager.Instance.Coins += 30;
                 }
 
-                UIManagerChallengeMode.Instance.UpdateScore();
-                UIManagerChallengeMode.Instance.UpdateCoins();
-
                 if(Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
                     StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
 
-                if(SceneManager.GetActiveScene().buildIndex == 2)
+                UIManagerChallengeMode.Instance.UpdateScore();
+                UIManagerChallengeMode.Instance.UpdateCoins();
+
+                if (SceneManager.GetActiveScene().buildIndex == 2)
                     Wind.Instance.ResetWind();
                 
             }else if(SceneManager.GetActiveScene().buildIndex == 5)
@@ -45,11 +45,11 @@ public class CheckTriggerEnter : MonoBehaviour
                 else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 3f)
                     CoinsManager.Instance.Coins += 10;
 
-                UIManagerEasyMode.Instance.UpdateCoins();
-                UIManagerEasyMode.Instance.UpdateScore();
-
                 if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
                     StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
+
+                UIManagerEasyMode.Instance.UpdateCoins();
+                UIManagerEasyMode.Instance.UpdateScore();
             }
         }
     }

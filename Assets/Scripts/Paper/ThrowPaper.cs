@@ -133,6 +133,8 @@ public class ThrowPaper : MonoBehaviour
         holding = false;
         thrown = true;
         audioSource.PlayOneShot(audioSource.clip);
+        if (CoinsManager.Instance.tutorial)
+            UIManagerEasyMode.Instance.StopFlick();
         if (_rigidbody)
         {
             PaperManager.Instance.ResetBallInvoke();
