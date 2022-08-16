@@ -26,6 +26,8 @@ public class Raycasting : MonoBehaviour
     public TMP_Text distance;
     public AudioSource audioSource;
     public AudioClip placeDustbinSound;
+    [SerializeField] GameObject rightArrow;
+    [SerializeField] GameObject leftArrow;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,6 +50,26 @@ public class Raycasting : MonoBehaviour
         if (Input.touchCount > 0 && arPlaneManager.enabled)
             Spawn();
 
+        if (placedDustbin != null)
+        {
+            var pos = Camera.main.WorldToScreenPoint(placedDustbin.transform.position);
+
+            if (pos.x > Screen.safeArea.xMax)
+            {
+                rightArrow.SetActive(true);
+                leftArrow.SetActive(false);
+            }else if(pos.x < Screen.safeArea.xMin)
+            {
+                rightArrow.SetActive(false);
+                leftArrow.SetActive(true);
+            }
+            else
+            {
+                rightArrow.SetActive(false);
+                leftArrow.SetActive(false);
+            }
+        }
+
         if(placedDustbin != null)
             distance.text = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position).ToString("F1") + "m";
         else if (placingDustbin != null)
@@ -65,8 +87,9 @@ public class Raycasting : MonoBehaviour
             var hitPose = hits[Mathf.FloorToInt((float)hits.Count / 2f)].pose;
             if (placingDustbin == null)
             {
-                if (CoinsManager.Instance.tutorial)
+                if (CoinsManager.Instance.tutorial == 1)
                 {
+                    Debug.Log("Inside raycasting tutorial");
                     UIManagerEasyMode.Instance.placed = true;
                     UIManagerEasyMode.Instance.StopHand();
                     UIManagerEasyMode.Instance.ShowHandInverted();
@@ -118,11 +141,11 @@ public class Raycasting : MonoBehaviour
 
         placeButton.SetActive(false);
         PaperManager.Instance.ResetBall();
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6 && !UIManagerChallengeMode.Instance.timerActive)
         {
             UIManagerChallengeMode.Instance.StartTimer();
         }
-        if(SceneManager.GetActiveScene().buildIndex == 5)
+        if(SceneManager.GetActiveScene().buildIndex == 5 && !UIManagerEasyMode.Instance.timerActive)
             UIManagerEasyMode.Instance.StartTimer();
     }
 

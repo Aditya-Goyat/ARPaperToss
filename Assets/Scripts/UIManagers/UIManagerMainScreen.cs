@@ -10,10 +10,17 @@ public class UIManagerMainScreen : MonoBehaviour
     [SerializeField] Slider ySlider;
     [SerializeField] Image sensImage;
     [SerializeField] Sprite lowSens, medSens, highSens;
+    [SerializeField] GameObject infoPanel;
 
     public void OnPlayLives()
     {
         AudioManager.Instance.uiClickSource.Play();
+        if (CoinsManager.Instance.tutorial == 1)
+        {
+            SceneManager.LoadScene(5);
+            AudioManager.Instance.OnPlayGame();
+            return;
+        }
         SceneManager.LoadScene(1);
         AudioManager.Instance.OnPlayGame();
     }
@@ -21,7 +28,7 @@ public class UIManagerMainScreen : MonoBehaviour
     public void OnPlayTimer()
     {
         AudioManager.Instance.uiClickSource.Play();
-        if (CoinsManager.Instance.tutorial)
+        if (CoinsManager.Instance.tutorial == 1)
         {
             SceneManager.LoadScene(5);
             AudioManager.Instance.OnPlayGame();
@@ -106,5 +113,10 @@ public class UIManagerMainScreen : MonoBehaviour
             ySlider.value = n;
             ySens.text = n.ToString();
         }
+    }
+
+    public void OnInfoClick()
+    {
+        infoPanel.SetActive(true);
     }
 }

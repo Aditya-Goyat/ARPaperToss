@@ -10,8 +10,7 @@ public class CoinsManager : MonoBehaviour
     public int[] isUnlocked;
     public int sensitivity = 65;
     public bool gameOver = false;
-    [HideInInspector]
-    public bool tutorial = true;
+    public int tutorial = 1;
     public int Coins { get { return coinsAmount; } set { coinsAmount = value; } }
     public int Heart { get { return heartAmount; } set { heartAmount = value; } }
 
@@ -33,6 +32,7 @@ public class CoinsManager : MonoBehaviour
             {
                 isUnlocked[i] = PlayerPrefs.GetInt("isUnlocked" + i);
             }
+            tutorial = PlayerPrefs.GetInt("tutorial");
         }
         else
         {
@@ -49,5 +49,6 @@ public class CoinsManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("isUnlocked" + i, isUnlocked[i]);
         }
+        PlayerPrefs.SetInt("tutorial", tutorial);
     }
 }

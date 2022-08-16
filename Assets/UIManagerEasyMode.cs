@@ -36,11 +36,12 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] GameObject hand;
     [SerializeField] GameObject handInverted;
     [SerializeField] GameObject flick;
+    [SerializeField] GameObject phone;
     [SerializeField] ARPlaneManager arPlaneManager;
     public bool isPanelOpen, placed = false;
     public float maxTimer = 120f;
     public float timerLeft;
-    bool timerActive = false, played = false;
+    public bool timerActive = false, played = false;
     int startCoins, endCoins, startHeart, endHeart;
     float t = 0f;
 
@@ -62,7 +63,7 @@ public class UIManagerEasyMode : MonoBehaviour
         UpdateCoins();
         UpdateSensitivity();
 
-        if (CoinsManager.Instance.tutorial)
+        if (CoinsManager.Instance.tutorial == 1)
         {
             ShowTutorial();
             arPlaneManager.enabled = false;
@@ -71,8 +72,11 @@ public class UIManagerEasyMode : MonoBehaviour
 
     private void Update()
     {
-        if(tutorial && arPlaneManager.trackables.count > 0 && !placed && !tutorial.activeInHierarchy)
+        if ((CoinsManager.Instance.tutorial == 1) && arPlaneManager.trackables.count > 0 && !placed && !tutorial.activeInHierarchy)
+        {
+            StopPhone();
             ShowHand();
+        }
 
         if (timerActive)
         {
@@ -131,7 +135,8 @@ public class UIManagerEasyMode : MonoBehaviour
     {
         AudioManager.Instance.uiClickSource.Play();
         StopHandInverted();
-        ShowFlick();
+        if(CoinsManager.Instance.tutorial == 1)
+            ShowFlick();
         Raycasting.instance.PlaceDustbin();
     }
 
@@ -287,11 +292,12 @@ public class UIManagerEasyMode : MonoBehaviour
         mainPanel.gameObject.SetActive(true);
         panelOpen.gameObject.SetActive(true);
         arPlaneManager.enabled = true;
+        ShowPhone();
     }
 
     public void OnSkipTutorial()
     {
-        CoinsManager.Instance.tutorial = false;
+        CoinsManager.Instance.tutorial = 0;
         tutorial.SetActive(false);
         mainPanel.gameObject.SetActive(true);
         panelOpen.gameObject.SetActive(true);
@@ -338,6 +344,17 @@ public class UIManagerEasyMode : MonoBehaviour
     public void StopFlick()
     {
         flick.SetActive(false);
-        CoinsManager.Instance.tutorial = false;
+        CoinsManager.Instance.tutorial = 0;
+        CoinsManager.Instance.Save();
+    }
+
+    public void ShowPhone()
+    { 
+        phone.SetActive(true);
+    }
+
+    public void StopPhone()
+    {
+        phone.SetActive(false);
     }
 }

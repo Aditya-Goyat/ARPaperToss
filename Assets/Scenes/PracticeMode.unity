@@ -192,11 +192,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1246240476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1246240476, guid: 601c8bda87b609c47af72fa502149843,
+    type: 3}
+  m_PrefabInstance: {fileID: 2073445034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1354141925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4975721614542780510, guid: d5c64018532176b4d85e319407784061,
     type: 3}
   m_PrefabInstance: {fileID: 4975721615896127675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1375184499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1375184499, guid: 601c8bda87b609c47af72fa502149843,
+    type: 3}
+  m_PrefabInstance: {fileID: 2073445034}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1659859598 stripped
 MonoBehaviour:
@@ -503,6 +515,16 @@ PrefabInstance:
       propertyPath: cameraObj
       value: 
       objectReference: {fileID: 1354141925}
+    - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
+        type: 3}
+      propertyPath: leftArrow
+      value: 
+      objectReference: {fileID: 1375184499}
+    - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
+        type: 3}
+      propertyPath: rightArrow
+      value: 
+      objectReference: {fileID: 1246240476}
     - target: {fileID: 154272294303023587, guid: 7f599064e03f9554fbbbe2891e79b323,
         type: 3}
       propertyPath: placeButton

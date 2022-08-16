@@ -48,32 +48,6 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayScheduled(AudioSettings.dspTime + transition.length);
     }
 
-/*    public IEnumerator OnMainScreenLoad()
-    {
-        audioSource.Stop();
-
-        audioSource.PlayOneShot(transition);
-        yield return new WaitUntil(() => audioSource.isPlaying == false);
-
-        audioSource.clip = mainMenuLoop;
-        audioSource.loop = true;
-        audioSource.Play();
-    }*/
-
-/*    public IEnumerator OnPlayGame()
-    {
-        audioSource.Stop();
-
-        double clipDuration = (double)audioSource.clip.samples / audioSource.clip.frequency;
-
-        audioSource.PlayOneShot(transition);
-        yield return new WaitUntil(() => audioSource.isPlaying == false);
-
-        audioSource.clip = gameLoop;
-        audioSource.loop = true;
-        audioSource.Play();
-    }*/
-
     // Update is called once per frame
     void Update()
     {

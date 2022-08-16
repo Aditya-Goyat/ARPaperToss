@@ -35,7 +35,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public bool isPanelOpen = false;
     public float maxTimer = 120f;
     public float timerLeft = 0;
-    bool timerActive = false, played = false;
+    public bool timerActive = false, played = false;
     int startCoins, endCoins, startHeart, endHeart;
     float t = 0f;
 

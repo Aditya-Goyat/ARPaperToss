@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManagerShop : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class UIManagerShop : MonoBehaviour
     [SerializeField] GameObject cheaterButton;
     public AudioSource audioSource;
     public AudioClip buySound, notEnoughBalanceSound;
+    public RectTransform notEnoughFundsCoins, notEnoughFundsStars;
+    private Sequence sequence;
 
     public void Start()
     {
@@ -78,7 +81,7 @@ public class UIManagerShop : MonoBehaviour
             }
             else
             {
-                NotEnoughFunds();
+                NotEnoughFunds(index);
             }
         }
     }
@@ -95,10 +98,15 @@ public class UIManagerShop : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void NotEnoughFunds()
+    public void NotEnoughFunds(int index)
     {
         audioSource.Stop();
         audioSource.PlayOneShot(notEnoughBalanceSound, 0.5f);
+
+        if (price[index] > 10000)
+            PlayNotEnoughFundsStars();
+        else
+            PlayNotEnougFundsCoins();
     }
 
     public void OnCheaterClick()
@@ -108,5 +116,23 @@ public class UIManagerShop : MonoBehaviour
 
         CoinsManager.Instance.Save();
         UpdateCoinText();
+    }
+
+    public void PlayNotEnoughFundsStars()
+    {
+        sequence = DOTween.Sequence();
+        sequence.Append(notEnoughFundsStars.gameObject.GetComponent<CanvasGroup>().DOFade(1.0f, 0.25f));
+        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(543.5f, -634.5f), 0.5f, false));
+        sequence.Append(notEnoughFundsStars.gameObject.GetComponent<CanvasGroup>().DOFade(0.0f, 0.25f));
+        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(543.5f, -664.5f), 0.0f, false));
+    }
+
+    public void PlayNotEnougFundsCoins()
+    {
+        sequence = DOTween.Sequence();
+        sequence.Append(notEnoughFundsCoins.gameObject.GetComponent<CanvasGroup>().DOFade(1.0f, 0.25f));
+        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(543.5f, -634.5f), 0.5f, false));
+        sequence.Append(notEnoughFundsCoins.gameObject.GetComponent<CanvasGroup>().DOFade(0.0f, 0.25f));
+        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(543.5f, -664.5f), 0.0f, false));
     }
 }
