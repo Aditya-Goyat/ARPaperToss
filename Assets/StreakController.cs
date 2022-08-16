@@ -68,14 +68,14 @@ public class StreakController : MonoBehaviour
                     CoinsManager.Instance.Heart += 10;
                 else if (distance >= 3f)
                     CoinsManager.Instance.Heart += 30;
-            }else if(SceneManager.GetActiveScene().buildIndex == 5)
+            }else if(SceneManager.GetActiveScene().buildIndex == 4)
             {
                 if (distance >= 2f && distance < 3f)
                     CoinsManager.Instance.Heart += 5;
                 else if (distance >= 3f)
                     CoinsManager.Instance.Heart += 10;
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 6)
+            else if (SceneManager.GetActiveScene().buildIndex == 5)
             {
                 if (distance >= 2f && distance < 3f)
                     CoinsManager.Instance.Heart += 50;

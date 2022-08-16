@@ -38,6 +38,8 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] GameObject flick;
     [SerializeField] GameObject phone;
     [SerializeField] ARPlaneManager arPlaneManager;
+    [SerializeField] Slider audioSlider;
+    [SerializeField] GameObject pressedImage;
     public bool isPanelOpen, placed = false;
     public float maxTimer = 120f;
     public float timerLeft;
@@ -56,13 +58,17 @@ public class UIManagerEasyMode : MonoBehaviour
             Instance = this;
         }
 
+        audioSlider.value = CoinsManager.Instance.volume;
+
         startCoins = CoinsManager.Instance.Coins;
         startHeart = CoinsManager.Instance.Heart;
 
+        pressedImage.SetActive(true);
         CoinsManager.Instance.gameOver = false;
         UpdateCoins();
         UpdateSensitivity();
 
+        CoinsManager.Instance.gameOver = false;
         if (CoinsManager.Instance.tutorial == 1)
         {
             ShowTutorial();
@@ -112,6 +118,7 @@ public class UIManagerEasyMode : MonoBehaviour
 
     public void ExitScene()
     {
+        pressedImage.SetActive(false);
         CoinsManager.Instance.Save();
         AudioManager.Instance.OnMainScreenLoad();
         SceneManager.LoadScene(0);
@@ -234,7 +241,7 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnHardClick()
     {
         AudioManager.Instance.uiClickSource.Play();
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void OnMediumClick()
@@ -246,7 +253,7 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnEasyClick()
     {
         AudioManager.Instance.uiClickSource.Play();
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     public void OnQuestionClick()
@@ -356,5 +363,23 @@ public class UIManagerEasyMode : MonoBehaviour
     public void StopPhone()
     {
         phone.SetActive(false);
+    }
+
+    public void OnVolumeSliderChange(float value)
+    {
+        CoinsManager.Instance.volume = value;
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+    }
+    public void OnMuteClick()
+    {
+        if (CoinsManager.Instance.volume == 0)
+            CoinsManager.Instance.volume = 1;
+        else
+            CoinsManager.Instance.volume = 0;
+
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+        audioSlider.value = CoinsManager.Instance.volume;
     }
 }

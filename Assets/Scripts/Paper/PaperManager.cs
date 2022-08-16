@@ -34,7 +34,7 @@ public class PaperManager : MonoBehaviour
 
     public void ResetBall()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 6)
+        if(SceneManager.GetActiveScene().buildIndex == 5)
             Wind.Instance.ResetWind();
         Instantiate(paperBall);
     }

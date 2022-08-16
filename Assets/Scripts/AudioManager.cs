@@ -47,10 +47,4 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = true;
         audioSource.PlayScheduled(AudioSettings.dspTime + transition.length);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
 }

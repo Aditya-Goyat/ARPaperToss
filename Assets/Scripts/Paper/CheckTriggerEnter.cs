@@ -7,13 +7,15 @@ public class CheckTriggerEnter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target"))
         {
+            if (GetComponent<Collider>().isTrigger == true)
+                return;
             Destroy(this.gameObject, PaperManager.Instance.resetBallAfterSeconds);
             ScoreManager.Instance.Score++;
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 UIManagerLivesMode.Instance.UpdateScore();
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
+            else if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 5)
             {
                 if (SceneManager.GetActiveScene().buildIndex == 2)
                 {
@@ -21,7 +23,7 @@ public class CheckTriggerEnter : MonoBehaviour
                         CoinsManager.Instance.Coins += 10;
                     else if (Vector3.Distance(Camera.main.transform.position, transform.position) > 3f)
                         CoinsManager.Instance.Coins += 20;
-                }else if(SceneManager.GetActiveScene().buildIndex == 6)
+                }else if(SceneManager.GetActiveScene().buildIndex == 5)
                 {
                     if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
                         CoinsManager.Instance.Coins += 20;
@@ -38,7 +40,7 @@ public class CheckTriggerEnter : MonoBehaviour
                 if (SceneManager.GetActiveScene().buildIndex == 2)
                     Wind.Instance.ResetWind();
                 
-            }else if(SceneManager.GetActiveScene().buildIndex == 5)
+            }else if(SceneManager.GetActiveScene().buildIndex == 4)
             {
                 if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f && Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
                     CoinsManager.Instance.Coins += 5;

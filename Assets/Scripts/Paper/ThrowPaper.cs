@@ -33,10 +33,10 @@ public class ThrowPaper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6) {
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 5) {
             if (UIManagerChallengeMode.Instance.isPanelOpen)
                 return;
-        }else if(SceneManager.GetActiveScene().buildIndex == 5)
+        }else if(SceneManager.GetActiveScene().buildIndex == 4)
         {
             if (UIManagerEasyMode.Instance.isPanelOpen)
                 return;
@@ -68,7 +68,7 @@ public class ThrowPaper : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(inputPositionCurrent);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100f, layer))
-                {
+                { 
                     if (hit.transform == this.transform)
                     {
                         startTime = Time.time;
@@ -122,6 +122,8 @@ public class ThrowPaper : MonoBehaviour
 
     void Throw(Vector2 inputPosition)
     {
+        if (GetComponent<Collider>().isTrigger == true)
+            GetComponent<Collider>().isTrigger = false;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.useGravity = true;
         inputPositionDifference.y = (inputPosition.y - inputPositionPivot.y) / Screen.height * CoinsManager.Instance.sensitivity;

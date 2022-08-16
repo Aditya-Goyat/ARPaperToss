@@ -14,6 +14,7 @@ public class UIManagerLivesMode : MonoBehaviour
     [SerializeField] CanvasGroup panelOpen;
     [SerializeField] CanvasGroup mainPanel;
     [SerializeField] RectTransform SidePanel;
+    [SerializeField] Slider audioSlider;
     public bool isPanelOpen = false;
 
     private void Awake()
@@ -27,7 +28,10 @@ public class UIManagerLivesMode : MonoBehaviour
             Instance = this;
         }
 
+        audioSlider.value = CoinsManager.Instance.volume;
+
         UpdateSensitivity();
+        CoinsManager.Instance.gameOver = false;
     }
 
     public void OnPlaceClick()
@@ -69,6 +73,7 @@ public class UIManagerLivesMode : MonoBehaviour
 
     public void OnExitGame()
     {
+        CoinsManager.Instance.gameOver = true;
         AudioManager.Instance.uiClickSource.Play();
         AudioManager.Instance.OnMainScreenLoad();
         SceneManager.LoadScene(0);
@@ -111,5 +116,24 @@ public class UIManagerLivesMode : MonoBehaviour
             ySlider.value = n;
             ySens.text = n.ToString();
         }
+    }
+
+    public void OnVolumeSliderChange(float value)
+    {
+        CoinsManager.Instance.volume = value;
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+    }
+
+    public void OnMuteClick()
+    {
+        if (CoinsManager.Instance.volume == 0)
+            CoinsManager.Instance.volume = 1;
+        else
+            CoinsManager.Instance.volume = 0;
+
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+        audioSlider.value = CoinsManager.Instance.volume;
     }
 }

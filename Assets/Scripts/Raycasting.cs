@@ -50,7 +50,7 @@ public class Raycasting : MonoBehaviour
         if (Input.touchCount > 0 && arPlaneManager.enabled)
             Spawn();
 
-        if (placedDustbin != null)
+        if (placedDustbin != null && !CoinsManager.Instance.gameOver)
         {
             var pos = Camera.main.WorldToScreenPoint(placedDustbin.transform.position);
 
@@ -105,33 +105,6 @@ public class Raycasting : MonoBehaviour
         }
     }
 
-    public void FreezeObject()
-    {
-        arPlaneManager.enabled = !arPlaneManager.enabled;
-        DisableAllARPlanes();
-
-        ReplaceDustbins();
-
-        place = !place;
-
-        if (!place)
-        {
-            //placeButton.SetActive(false);
-            PaperManager.Instance.ResetBall();
-            if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
-            {
-                UIManagerChallengeMode.Instance.StartTimer();
-            }
-        }
-        else
-        {
-            //placeButton.SetActive(true);
-            DestroyActivePaperBall();
-        }
-
-        DestroyThrownPaperBalls();
-    }
-
     public void PlaceDustbin()
     {
         audioSource.PlayOneShot(placeDustbinSound);
@@ -141,11 +114,11 @@ public class Raycasting : MonoBehaviour
 
         placeButton.SetActive(false);
         PaperManager.Instance.ResetBall();
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6 && !UIManagerChallengeMode.Instance.timerActive)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 5 && !UIManagerChallengeMode.Instance.timerActive)
         {
             UIManagerChallengeMode.Instance.StartTimer();
         }
-        if(SceneManager.GetActiveScene().buildIndex == 5 && !UIManagerEasyMode.Instance.timerActive)
+        if(SceneManager.GetActiveScene().buildIndex == 4 && !UIManagerEasyMode.Instance.timerActive)
             UIManagerEasyMode.Instance.StartTimer();
     }
 
@@ -174,7 +147,7 @@ public class Raycasting : MonoBehaviour
     {
         PaperManager.Instance.StopInvoke();
 
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 5)
         {
             if (cameraObj.transform.childCount >= 2)
             {
@@ -187,7 +160,7 @@ public class Raycasting : MonoBehaviour
                 }
             }
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 5)
+        else if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             foreach (Transform child in cameraObj.transform)
             {

@@ -31,6 +31,8 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] RectTransform helpPanel;
     [SerializeField] GameObject questionMark;
     [SerializeField] GameObject back;
+    [SerializeField] Slider audioSlider;
+    [SerializeField] GameObject[] pressedImage = new GameObject[2];
 
     public bool isPanelOpen = false;
     public float maxTimer = 120f;
@@ -50,8 +52,21 @@ public class UIManagerChallengeMode : MonoBehaviour
             Instance = this;
         }
 
+        audioSlider.value = CoinsManager.Instance.volume;
+
         startCoins = CoinsManager.Instance.Coins;
         startHeart = CoinsManager.Instance.Heart;
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            pressedImage[0].SetActive(true);
+            pressedImage[1].SetActive(false);
+        }
+        else
+        {
+            pressedImage[0].SetActive(false);
+            pressedImage[1].SetActive(true);
+        }
 
         CoinsManager.Instance.gameOver = false;
         UpdateCoins();
@@ -110,6 +125,9 @@ public class UIManagerChallengeMode : MonoBehaviour
 
     public void ExitScene()
     {
+        pressedImage[0].SetActive(false);
+        pressedImage[1].SetActive(false);
+
         CoinsManager.Instance.Save();
         AudioManager.Instance.uiClickSource.Play();
         SceneManager.LoadScene(0);
@@ -223,7 +241,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnHardClick()
     {
         AudioManager.Instance.uiClickSource.Play();
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void OnMediumClick()
@@ -235,7 +253,7 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnEasyClick()
     {
         AudioManager.Instance.uiClickSource.Play();
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     public void OnReload()
@@ -260,5 +278,24 @@ public class UIManagerChallengeMode : MonoBehaviour
         questionMark.SetActive(true);
         back.SetActive(false);
         panelOpen.gameObject.SetActive(true);
+    }
+
+    public void OnVolumeSliderChange(float value)
+    {
+        CoinsManager.Instance.volume = value;
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+    }
+
+    public void OnMuteClick()
+    {
+        if (CoinsManager.Instance.volume == 0)
+            CoinsManager.Instance.volume = 1;
+        else
+            CoinsManager.Instance.volume = 0;
+
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+        audioSlider.value = CoinsManager.Instance.volume;
     }
 }

@@ -11,13 +11,19 @@ public class UIManagerMainScreen : MonoBehaviour
     [SerializeField] Image sensImage;
     [SerializeField] Sprite lowSens, medSens, highSens;
     [SerializeField] GameObject infoPanel;
+    [SerializeField] Slider audioSlider;
+
+    private void Awake()
+    {
+        AudioListener.volume = CoinsManager.Instance.volume;
+    }
 
     public void OnPlayLives()
     {
         AudioManager.Instance.uiClickSource.Play();
         if (CoinsManager.Instance.tutorial == 1)
         {
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
             AudioManager.Instance.OnPlayGame();
             return;
         }
@@ -30,7 +36,7 @@ public class UIManagerMainScreen : MonoBehaviour
         AudioManager.Instance.uiClickSource.Play();
         if (CoinsManager.Instance.tutorial == 1)
         {
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
             AudioManager.Instance.OnPlayGame();
             return;
         }
@@ -49,6 +55,7 @@ public class UIManagerMainScreen : MonoBehaviour
         AudioManager.Instance.uiClickSource.Play();
         mainPanel.SetActive(false);
         settingsPanel.SetActive(true);
+        audioSlider.value = CoinsManager.Instance.volume;
         UpdateSensitivity();
     }
 
@@ -118,5 +125,29 @@ public class UIManagerMainScreen : MonoBehaviour
     public void OnInfoClick()
     {
         infoPanel.SetActive(true);
+    }
+
+    public void OnInfoExitClick()
+    {
+        infoPanel.SetActive(false);
+    }
+
+    public void OnVolumeSliderChange(float value)
+    {
+        CoinsManager.Instance.volume = value;
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+    }
+
+    public void OnMuteClick()
+    {
+        if (CoinsManager.Instance.volume == 0)
+            CoinsManager.Instance.volume = 1;
+        else
+            CoinsManager.Instance.volume = 0;
+
+        CoinsManager.Instance.SaveVolume();
+        CoinsManager.Instance.LoadVolume();
+        audioSlider.value = CoinsManager.Instance.volume;
     }
 }
