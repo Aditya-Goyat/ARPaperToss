@@ -33,7 +33,7 @@ public class ShopManager : MonoBehaviour
 
     public bool TryToBuy(int price)
     {
-        if (price > 10000)
+        if (price >= 10000)
         {
             if (price/100 <= CoinsManager.Instance.Heart)
                 return true;

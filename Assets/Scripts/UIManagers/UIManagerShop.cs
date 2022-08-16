@@ -9,7 +9,7 @@ using DG.Tweening;
 public class UIManagerShop : MonoBehaviour
 {
     //[SerializeField] TMP_Text noFundsText;
-    int[] price = new int[6] {0, 1000, 3000, 7000, 20000, 100000};
+    int[] price = new int[6] {0, 100, 500, 1000, 10000, 20000};
     public Image[] buyButtons = new Image[6];
     public Image[] icons = new Image[6];
     public Image[] priceIcons = new Image[6];
@@ -30,6 +30,12 @@ public class UIManagerShop : MonoBehaviour
 
         if(Debug.isDebugBuild)
             cheaterButton.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.H))
+            PlayNotEnoughFundsStars();
     }
 
     public void SetBuyButtons()
@@ -68,7 +74,7 @@ public class UIManagerShop : MonoBehaviour
             {
                 AudioManager.Instance.uiClickSource.Play();
                 audioSource.PlayOneShot(buySound);
-                if(price[index] > 10000)
+                if(price[index] >= 10000)
                     CoinsManager.Instance.Heart -= (price[index] / 100);
                 else
                     CoinsManager.Instance.Coins -= price[index];
@@ -103,7 +109,7 @@ public class UIManagerShop : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(notEnoughBalanceSound, 0.5f);
 
-        if (price[index] > 10000)
+        if (price[index] >= 10000)
             PlayNotEnoughFundsStars();
         else
             PlayNotEnougFundsCoins();
@@ -122,17 +128,17 @@ public class UIManagerShop : MonoBehaviour
     {
         sequence = DOTween.Sequence();
         sequence.Append(notEnoughFundsStars.gameObject.GetComponent<CanvasGroup>().DOFade(1.0f, 0.25f));
-        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(543.5f, -634.5f), 0.5f, false));
+        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(notEnoughFundsStars.anchoredPosition.x, (notEnoughFundsStars.anchoredPosition.y + 30f)), 0.5f, false));
         sequence.Append(notEnoughFundsStars.gameObject.GetComponent<CanvasGroup>().DOFade(0.0f, 0.25f));
-        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(543.5f, -664.5f), 0.0f, false));
+        sequence.Append(notEnoughFundsStars.DOAnchorPos(new Vector2(notEnoughFundsStars.anchoredPosition.x, (notEnoughFundsStars.anchoredPosition.y)), 0.0f, false));
     }
 
     public void PlayNotEnougFundsCoins()
     {
         sequence = DOTween.Sequence();
         sequence.Append(notEnoughFundsCoins.gameObject.GetComponent<CanvasGroup>().DOFade(1.0f, 0.25f));
-        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(543.5f, -634.5f), 0.5f, false));
+        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(notEnoughFundsCoins.anchoredPosition.x, (notEnoughFundsCoins.anchoredPosition.y + 30f)), 0.5f, false));
         sequence.Append(notEnoughFundsCoins.gameObject.GetComponent<CanvasGroup>().DOFade(0.0f, 0.25f));
-        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(543.5f, -664.5f), 0.0f, false));
+        sequence.Append(notEnoughFundsCoins.DOAnchorPos(new Vector2(notEnoughFundsCoins.anchoredPosition.x, (notEnoughFundsCoins.anchoredPosition.y)), 0.0f, false));
     }
 }

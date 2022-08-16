@@ -15,6 +15,7 @@ public class UIManagerMainScreen : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(CoinsManager.Instance.volume);
         AudioListener.volume = CoinsManager.Instance.volume;
     }
 

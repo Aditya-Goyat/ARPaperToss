@@ -34,7 +34,7 @@ public class CoinsManager : MonoBehaviour
                 isUnlocked[i] = PlayerPrefs.GetInt("isUnlocked" + i);
             }
             tutorial = PlayerPrefs.GetInt("tutorial");
-            volume = PlayerPrefs.GetInt("volume");
+            volume = PlayerPrefs.GetFloat("volume");
             LoadVolume();
         }
         else
