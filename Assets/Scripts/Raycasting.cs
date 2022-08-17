@@ -69,10 +69,24 @@ public class Raycasting : MonoBehaviour
             }
         }
 
-        if(placedDustbin != null)
-            distance.text = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position).ToString("F1") + "m";
+        if (placedDustbin != null)
+        {
+            float dis = Vector3.Distance(Camera.main.transform.position, placedDustbin.transform.position);
+            distance.text = dis.ToString("F1") + "m";
+            if(dis < 2f)
+                distance.color = Color.red;
+            else if (dis >= 2f)
+                distance.color = Color.green;
+        }
         else if (placingDustbin != null)
-            distance.text = Vector3.Distance(Camera.main.transform.position, placingDustbin.transform.position).ToString("F1") + "m";
+        {
+            float dis = Vector3.Distance(Camera.main.transform.position, placingDustbin.transform.position);
+            distance.text = dis.ToString("F1") + "m";
+            if (dis < 2f)
+                distance.color = Color.red;
+            else if (dis >= 2f)
+                distance.color = Color.green;
+        }
     }
 
     private void Spawn()
