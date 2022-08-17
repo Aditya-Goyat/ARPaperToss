@@ -125,11 +125,13 @@ public class UIManagerMainScreen : MonoBehaviour
 
     public void OnInfoClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         infoPanel.SetActive(true);
     }
 
     public void OnInfoExitClick()
     {
+        AudioManager.Instance.uiClickSource.Play();
         infoPanel.SetActive(false);
     }
 

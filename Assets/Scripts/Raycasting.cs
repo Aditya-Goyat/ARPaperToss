@@ -25,7 +25,6 @@ public class Raycasting : MonoBehaviour
     public GameObject placeButton;
     public TMP_Text distance;
     public AudioSource audioSource;
-    public AudioClip placeDustbinSound;
     [SerializeField] GameObject rightArrow;
     [SerializeField] GameObject leftArrow;
 
@@ -107,7 +106,7 @@ public class Raycasting : MonoBehaviour
 
     public void PlaceDustbin()
     {
-        audioSource.PlayOneShot(placeDustbinSound);
+        audioSource.Play();
         arPlaneManager.enabled = false;
         DisableAllARPlanes();
         ReplaceDustbins();

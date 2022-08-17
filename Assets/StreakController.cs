@@ -17,6 +17,9 @@ public class StreakController : MonoBehaviour
     [SerializeField] Image streakAmountImage;
     [SerializeField] Image streakBg;
     [SerializeField] Image streakText;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip streak01;
+    [SerializeField] AudioClip streak02;
     private static StreakController instance;
 
     private void Awake()
@@ -58,9 +61,12 @@ public class StreakController : MonoBehaviour
         instance.timerSlider.gameObject.SetActive(true);
         instance.streakAmountImage.gameObject.SetActive(true);
         instance.streakAmount++;
+        if (instance.streakAmount == 1)
+            instance.audioSource.PlayOneShot(instance.streak01);
+        else if (instance.streakAmount == 2)
+            instance.audioSource.PlayOneShot(instance.streak02);
         if (instance.streakAmount == 3)
         {
-            Debug.Log("inside if of reset Timer.");
             CollisionAudio.instance.PlayFireworks();
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
