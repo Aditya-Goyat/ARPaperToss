@@ -281,18 +281,6 @@ public class UIManagerEasyMode : MonoBehaviour
         tutorial.SetActive(true);
     }
 
-    public void OnRightClickFirstFrame()
-    {
-        firstFrame.SetActive(false);
-        secondFrame.SetActive(true);
-    }
-
-    public void OnRightClickSecondFrame()
-    {
-        secondFrame.SetActive(false);
-        thirdFrame.SetActive(true);
-    }
-
     public void OnPlayGame()
     {
         tutorial.SetActive(false);
@@ -309,18 +297,6 @@ public class UIManagerEasyMode : MonoBehaviour
         mainPanel.gameObject.SetActive(true);
         panelOpen.gameObject.SetActive(true);
         arPlaneManager.enabled = true;
-    }
-
-    public void OnLeftClickThirdFrame()
-    {
-        secondFrame.SetActive(true);
-        thirdFrame.SetActive(false);
-    }
-
-    public void OnLeftClickSecondFrame()
-    {
-        firstFrame.SetActive(true);
-        secondFrame.SetActive(false);
     }
 
     public void ShowHand()
