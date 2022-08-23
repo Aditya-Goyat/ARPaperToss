@@ -95,6 +95,10 @@ public class StreakController : MonoBehaviour
                     CoinsManager.Instance.Heart += 100;
             }
         }
+        else
+        {
+            CollisionAudio.instance.StarCoroutineCoin();
+        }
         switch (instance.streakAmount)
         {
             case 1:

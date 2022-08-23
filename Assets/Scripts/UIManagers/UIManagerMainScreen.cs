@@ -9,8 +9,9 @@ public class UIManagerMainScreen : MonoBehaviour
     [SerializeField] TMP_InputField ySens;
     [SerializeField] Slider ySlider;
     [SerializeField] Image sensImage;
-    [SerializeField] Sprite lowSens, medSens, highSens;
+    [SerializeField] Sprite lowSens, medSens, highSens, unmute, mute;
     [SerializeField] GameObject infoPanel;
+    [SerializeField] Image muteButton;
     [SerializeField] Slider audioSlider;
 
     private void Awake()
@@ -145,9 +146,15 @@ public class UIManagerMainScreen : MonoBehaviour
     public void OnMuteClick()
     {
         if (CoinsManager.Instance.volume == 0)
+        {
             CoinsManager.Instance.volume = 1;
+            muteButton.sprite = mute;
+        }
         else
+        {
             CoinsManager.Instance.volume = 0;
+            muteButton.sprite = unmute;
+        }
 
         CoinsManager.Instance.SaveVolume();
         CoinsManager.Instance.LoadVolume();

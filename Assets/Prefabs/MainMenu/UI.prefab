@@ -2889,7 +2889,10 @@ MonoBehaviour:
   lowSens: {fileID: 21300000, guid: ec5980545c6260843990395437fef4e4, type: 3}
   medSens: {fileID: 21300000, guid: 2b5d86ddac9480445918eec9a8883e45, type: 3}
   highSens: {fileID: 21300000, guid: a73ec12330b09da49956599d83ee4750, type: 3}
+  unmute: {fileID: 21300000, guid: 54b6390662ae07549875f79a1f5a80a3, type: 3}
+  mute: {fileID: 21300000, guid: d9c0bb96f3d93ea4eaa72468389031d6, type: 3}
   infoPanel: {fileID: 1523997274}
+  muteButton: {fileID: 859313171}
   audioSlider: {fileID: 87485304}
 --- !u!1 &2867768558884293523
 GameObject:

@@ -34,9 +34,6 @@ public class CheckTriggerEnter : MonoBehaviour
                 if(Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
                     StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
 
-                if(StreakController.GetStreak() > 2)
-                    CollisionAudio.instance.StarCoroutineCoin();
-
                 UIManagerChallengeMode.Instance.UpdateScore();
                 UIManagerChallengeMode.Instance.UpdateCoins();
 
@@ -52,9 +49,6 @@ public class CheckTriggerEnter : MonoBehaviour
 
                 if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 2f)
                     StreakController.ResetTimer(Vector3.Distance(Camera.main.transform.position, transform.position));
-
-                if (StreakController.GetStreak() > 2)
-                    CollisionAudio.instance.StarCoroutineCoin();
 
                 UIManagerEasyMode.Instance.UpdateCoins();
                 UIManagerEasyMode.Instance.UpdateScore();
