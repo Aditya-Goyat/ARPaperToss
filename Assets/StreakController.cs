@@ -27,6 +27,11 @@ public class StreakController : MonoBehaviour
         instance = this;
     }
 
+    public static int GetStreak()
+    {
+        return instance.streakAmount;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +73,7 @@ public class StreakController : MonoBehaviour
         if (instance.streakAmount == 3)
         {
             CollisionAudio.instance.PlayFireworks();
+            CollisionAudio.instance.StarCoroutineStar();
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 if (distance >= 2f && distance < 3f)

@@ -40,6 +40,9 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] ARPlaneManager arPlaneManager;
     [SerializeField] Slider audioSlider;
     [SerializeField] GameObject pressedImage;
+    [SerializeField] GameObject HandPointingQuestionMark;
+    [SerializeField] GameObject HandPointingOnMenu;
+    [SerializeField] GameObject menuHand;
     public bool isPanelOpen, placed = false;
     public float maxTimer = 120f;
     public float timerLeft;
@@ -164,6 +167,11 @@ public class UIManagerEasyMode : MonoBehaviour
         panelOpen.DOFade(0, 0.75f);
         panelClose.transform.gameObject.SetActive(true);
         panelClose.DOFade(1, 0.75f);
+        if (CoinsManager.Instance.tutorial == 1)
+        {
+            StopHandOnMenu();
+            StartCoroutine(ShowMenuHand());
+        }
     }
 
     public void OnExitclick()
@@ -176,6 +184,16 @@ public class UIManagerEasyMode : MonoBehaviour
         panelOpen.DOFade(1, 0.75f);
         panelClose.transform.gameObject.SetActive(false);
         panelClose.DOFade(0, 0.75f);
+    }
+
+    public IEnumerator ShowMenuHand()
+    {
+        menuHand.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(2.0f);
+
+        menuHand.SetActive(false);
+        CoinsManager.Instance.tutorial = 0;
     }
 
     public void OnExitGame()
@@ -241,12 +259,16 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnHardClick()
     {
         AudioManager.Instance.uiClickSource.Play();
+        if(CoinsManager.Instance.tutorial == 1)
+            CoinsManager.Instance.tutorial = 0;
         SceneManager.LoadScene(5);
     }
 
     public void OnMediumClick()
     {
         AudioManager.Instance.uiClickSource.Play();
+        if (CoinsManager.Instance.tutorial == 1)
+            CoinsManager.Instance.tutorial = 0;
         SceneManager.LoadScene(2);
     }
 
@@ -272,6 +294,29 @@ public class UIManagerEasyMode : MonoBehaviour
         questionMark.SetActive(true);
         back.SetActive(false);
         panelOpen.gameObject.SetActive(true);
+        if (CoinsManager.Instance.tutorial == 1)
+            StopHandOnQuestionMark();
+    }
+
+    public void StopHandOnQuestionMark()
+    {
+        HandPointingQuestionMark.SetActive(false);
+        StartHandOnMenu();
+    }
+
+    public void StartHandOnQuestionMark()
+    {
+        HandPointingQuestionMark.SetActive(true);
+    }
+
+    public void StopHandOnMenu()
+    {
+        HandPointingOnMenu.SetActive(false);
+    }
+
+    public void StartHandOnMenu()
+    {
+        HandPointingOnMenu.SetActive(true);
     }
 
     public void ShowTutorial()
@@ -288,15 +333,6 @@ public class UIManagerEasyMode : MonoBehaviour
         panelOpen.gameObject.SetActive(true);
         arPlaneManager.enabled = true;
         ShowPhone();
-    }
-
-    public void OnSkipTutorial()
-    {
-        CoinsManager.Instance.tutorial = 0;
-        tutorial.SetActive(false);
-        mainPanel.gameObject.SetActive(true);
-        panelOpen.gameObject.SetActive(true);
-        arPlaneManager.enabled = true;
     }
 
     public void ShowHand()
@@ -327,7 +363,7 @@ public class UIManagerEasyMode : MonoBehaviour
     public void StopFlick()
     {
         flick.SetActive(false);
-        CoinsManager.Instance.tutorial = 0;
+/*        CoinsManager.Instance.tutorial = 0;*/
         CoinsManager.Instance.Save();
     }
 
