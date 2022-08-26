@@ -33,6 +33,8 @@ public class UIManagerChallengeMode : MonoBehaviour
     [SerializeField] GameObject back;
     [SerializeField] Slider audioSlider;
     [SerializeField] GameObject[] pressedImage = new GameObject[2];
+    [SerializeField] Sprite mute, unmute;
+    [SerializeField] Image muteButton;
 
     public bool isPanelOpen = false;
     public float maxTimer = 120f;
@@ -290,9 +292,15 @@ public class UIManagerChallengeMode : MonoBehaviour
     public void OnMuteClick()
     {
         if (CoinsManager.Instance.volume == 0)
+        {
             CoinsManager.Instance.volume = 1;
+            muteButton.sprite = mute;
+        }
         else
+        {
             CoinsManager.Instance.volume = 0;
+            muteButton.sprite = unmute;
+        }
 
         CoinsManager.Instance.SaveVolume();
         CoinsManager.Instance.LoadVolume();

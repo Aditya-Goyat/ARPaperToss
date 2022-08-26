@@ -43,6 +43,8 @@ public class UIManagerEasyMode : MonoBehaviour
     [SerializeField] GameObject HandPointingQuestionMark;
     [SerializeField] GameObject HandPointingOnMenu;
     [SerializeField] GameObject menuHand;
+    [SerializeField] Sprite mute, unmute;
+    [SerializeField] Image muteButton;
     public bool isPanelOpen, placed = false;
     public float maxTimer = 120f;
     public float timerLeft;
@@ -201,6 +203,7 @@ public class UIManagerEasyMode : MonoBehaviour
         AudioManager.Instance.uiClickSource.Play();
         CoinsManager.Instance.Save();
         AudioManager.Instance.OnMainScreenLoad();
+        CoinsManager.Instance.tutorial = 0;
         SceneManager.LoadScene(0);
     }
 
@@ -386,9 +389,15 @@ public class UIManagerEasyMode : MonoBehaviour
     public void OnMuteClick()
     {
         if (CoinsManager.Instance.volume == 0)
+        {
             CoinsManager.Instance.volume = 1;
+            muteButton.sprite = mute;
+        }
         else
+        {
             CoinsManager.Instance.volume = 0;
+            muteButton.sprite = unmute;
+        }
 
         CoinsManager.Instance.SaveVolume();
         CoinsManager.Instance.LoadVolume();

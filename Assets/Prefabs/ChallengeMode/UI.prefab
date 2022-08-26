@@ -1668,7 +1668,6 @@ GameObject:
   - component: {fileID: 1261052150}
   - component: {fileID: 1261052152}
   - component: {fileID: 1261052151}
-  - component: {fileID: 2118427080873021167}
   m_Layer: 5
   m_Name: RightWindImage
   m_TagString: Untagged
@@ -1734,26 +1733,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &2118427080873021167
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261052149}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 06aec9c2fe305604fa573047c8c15f5c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1303718856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,7 +2149,6 @@ GameObject:
   - component: {fileID: 1429717685}
   - component: {fileID: 1429717687}
   - component: {fileID: 1429717686}
-  - component: {fileID: 4491186656903652171}
   m_Layer: 5
   m_Name: LeftWindImage
   m_TagString: Untagged
@@ -2236,26 +2214,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &4491186656903652171
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429717684}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 21b88fc4e1c6b324e99279e8efa50fab, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1484941477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5161,6 +5119,9 @@ MonoBehaviour:
   pressedImage:
   - {fileID: 1742464796}
   - {fileID: 357144197}
+  mute: {fileID: 21300000, guid: d9c0bb96f3d93ea4eaa72468389031d6, type: 3}
+  unmute: {fileID: 21300000, guid: 54b6390662ae07549875f79a1f5a80a3, type: 3}
+  muteButton: {fileID: 3799240883685703548}
   isPanelOpen: 0
   maxTimer: 45
   timerLeft: 0

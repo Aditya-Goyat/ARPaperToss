@@ -3971,4 +3971,7 @@ MonoBehaviour:
   mainPanel: {fileID: 679305191}
   SidePanel: {fileID: 3995628419035514186}
   audioSlider: {fileID: 7119778729480968933}
+  mute: {fileID: 21300000, guid: d9c0bb96f3d93ea4eaa72468389031d6, type: 3}
+  unmute: {fileID: 21300000, guid: 54b6390662ae07549875f79a1f5a80a3, type: 3}
+  muteButton: {fileID: 2646741212749603764}
   isPanelOpen: 0

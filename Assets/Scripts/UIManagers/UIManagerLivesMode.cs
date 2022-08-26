@@ -15,6 +15,8 @@ public class UIManagerLivesMode : MonoBehaviour
     [SerializeField] CanvasGroup mainPanel;
     [SerializeField] RectTransform SidePanel;
     [SerializeField] Slider audioSlider;
+    [SerializeField] Sprite mute, unmute;
+    [SerializeField] Image muteButton;
     public bool isPanelOpen = false;
 
     private void Awake()
@@ -128,9 +130,15 @@ public class UIManagerLivesMode : MonoBehaviour
     public void OnMuteClick()
     {
         if (CoinsManager.Instance.volume == 0)
+        {
             CoinsManager.Instance.volume = 1;
+            muteButton.sprite = mute;
+        }
         else
+        {
             CoinsManager.Instance.volume = 0;
+            muteButton.sprite = unmute;
+        }
 
         CoinsManager.Instance.SaveVolume();
         CoinsManager.Instance.LoadVolume();

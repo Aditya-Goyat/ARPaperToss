@@ -27,6 +27,7 @@ public class Raycasting : MonoBehaviour
     public AudioSource audioSource;
     [SerializeField] GameObject rightArrow;
     [SerializeField] GameObject leftArrow;
+    float bottomLimit;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,6 +42,17 @@ public class Raycasting : MonoBehaviour
     {
         paperManager = GameObject.Find("PaperManager");
         placeButton.SetActive(false);
+
+        Vector3[] cornerArray = new Vector3[4];
+        placeButton.GetComponent<RectTransform>().GetWorldCorners(cornerArray);
+        //Vector3 topLeftCorner = Camera.main.WorldToScreenPoint(cornerArray[1]);
+        bottomLimit = cornerArray[1].y;
+
+        for(int i = 0; i < 4; i++)
+            Debug.Log(cornerArray[i]);
+
+        //Debug.Log(topLeftCorner);
+        Debug.Log(bottomLimit);
     }
 
     // Update is called once per frame
@@ -92,7 +104,7 @@ public class Raycasting : MonoBehaviour
     private void Spawn()
     {
         Touch touch = Input.GetTouch(0);
-        if (touch.position.y < 250)
+        if (touch.position.y < bottomLimit)
             return;
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         if (raycast.Raycast(ray, hits, TrackableType.PlaneWithinPolygon) && place)
